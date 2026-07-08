@@ -703,3 +703,55 @@
   color: var(--color-accent-secondary) !important;
   background-color: rgba(20, 184, 166, 0.05); /* Teal overlay */
 }
+
+/* ----------------------------------------------------
+   13. Horizontal Bento Tech Icons (Hero Column)
+---------------------------------------------------- */
+.tech-stack-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.tech-icon-card {
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
+  background-color: var(--surface-card);
+  border: 1px solid var(--color-ash-mist);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform var(--duration-short) ease,
+              border-color var(--duration-short) ease,
+              box-shadow var(--duration-short) ease,
+              background-color var(--duration-short) ease;
+  position: relative;
+}
+
+.tech-icon-card:hover {
+  transform: translateY(-4px) scale(1.08);
+  border-color: var(--glow-color, var(--color-accent)) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4),
+              0 0 16px var(--glow-color, var(--color-accent));
+  background-color: rgba(30, 41, 59, 0.2);
+}
+
+.light .tech-icon-card:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08),
+              0 0 16px var(--glow-color, var(--color-accent));
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.tech-icon-card svg {
+  width: 26px;
+  height: 26px;
+  transition: transform var(--duration-short) ease;
+}
+
+.tech-icon-card:hover svg {
+  transform: scale(1.1);
+}
+
