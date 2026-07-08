@@ -5,15 +5,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 40px 0;
+  padding: 50px 0;
   box-sizing: border-box;
   overflow: visible;
 }
 
 .hobbies-cards-stack {
   position: relative;
-  width: 320px;
-  height: 380px;
+  width: 380px; /* Expanded for larger cards */
+  height: 420px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -21,18 +21,18 @@
   perspective: 1000px;
 }
 
-/* Individual card styling */
+/* Individual card styling (enlarged dimensions) */
 .hobby-stack-card {
   position: absolute;
-  width: 220px;
-  height: 320px;
-  border-radius: 16px;
-  border: 1.5px solid #ffffff;
+  width: 250px; /* Expanded from 220px */
+  height: 360px; /* Expanded from 320px */
+  border-radius: 20px;
+  border: 2px solid #ffffff;
   background-color: #0f172a;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.4);
   transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1),
               box-shadow 0.4s ease,
               opacity 0.4s ease;
@@ -41,28 +41,29 @@
 
 /* Custom border theme for cards in light mode */
 .light .hobby-stack-card {
-  border: 1.5px solid var(--color-ash-mist);
+  border: 2px solid var(--color-ash-mist);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
 }
 
 /* Base positions in stacked state */
 .card-sports {
-  transform: translate3d(-35px, 15px, -20px) rotate(-10deg);
+  transform: translate3d(-40px, 20px, -20px) rotate(-10deg);
   opacity: 0.8;
 }
 
 .card-gaming {
-  transform: translate3d(-10px, 5px, -10px) rotate(-4deg);
+  transform: translate3d(-15px, 8px, -10px) rotate(-4deg);
   opacity: 0.95;
 }
 
 .card-hiking {
-  transform: translate3d(15px, -5px, 0px) rotate(4deg);
+  transform: translate3d(20px, -8px, 0px) rotate(4deg);
   opacity: 1;
 }
 
-/* Fanning out when container stack is hovered */
+/* Fanning out when container stack is hovered (widened spacing) */
 .hobbies-cards-stack:hover .card-sports {
-  transform: translate3d(-140px, 0px, 0px) rotate(-6deg);
+  transform: translate3d(-170px, 0px, 0px) rotate(-6deg);
   opacity: 1;
 }
 
@@ -72,7 +73,7 @@
 }
 
 .hobbies-cards-stack:hover .card-hiking {
-  transform: translate3d(140px, 0px, 0px) rotate(6deg);
+  transform: translate3d(170px, 0px, 0px) rotate(6deg);
   opacity: 1;
 }
 
@@ -80,20 +81,20 @@
 .hobby-stack-card.hovered {
   z-index: 20 !important;
   opacity: 1 !important;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6),
-              0 0 20px var(--card-glow);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.55),
+              0 0 25px var(--card-glow);
 }
 
 .hobbies-cards-stack:hover .card-sports.hovered {
-  transform: translate3d(-140px, -20px, 30px) scale(1.08) rotate(0deg) !important;
+  transform: translate3d(-170px, -20px, 40px) scale(1.08) rotate(0deg) !important;
 }
 
 .hobbies-cards-stack:hover .card-gaming.hovered {
-  transform: translate3d(0px, -25px, 30px) scale(1.08) rotate(0deg) !important;
+  transform: translate3d(0px, -25px, 40px) scale(1.08) rotate(0deg) !important;
 }
 
 .hobbies-cards-stack:hover .card-hiking.hovered {
-  transform: translate3d(140px, -20px, 30px) scale(1.08) rotate(0deg) !important;
+  transform: translate3d(170px, -20px, 40px) scale(1.08) rotate(0deg) !important;
 }
 
 /* Card inner parts styling */
@@ -103,25 +104,43 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 20px;
   box-sizing: border-box;
   overflow: hidden;
+  position: relative;
 }
 
-.hobby-card-top svg {
+/* Hobby Image render sizing */
+.hobby-card-image {
   width: 100%;
   height: 100%;
+  transition: transform 0.4s ease;
+}
+
+/* Sports and Gaming are centered silhouettes on white background */
+.card-sports .hobby-card-image,
+.card-gaming .hobby-card-image {
   object-fit: contain;
+  padding: 16px;
+  background-color: #ffffff;
+}
+
+/* Hiking is a landscape image that spans full bleed */
+.card-hiking .hobby-card-image {
+  object-fit: cover;
+}
+
+.hobby-stack-card:hover .hobby-card-image {
+  transform: scale(1.05);
 }
 
 .hobby-card-bottom {
   height: 45%;
-  background-color: #131c31; /* Always deep navy for high-contrast retro look */
-  padding: var(--spacing-16) var(--spacing-20);
+  background-color: #131c31; /* Deep navy for clean visual separation */
+  padding: var(--spacing-20) var(--spacing-24);
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  gap: 4px;
+  gap: 6px;
   box-sizing: border-box;
   text-align: left;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
@@ -130,7 +149,7 @@
 .hobby-card-title {
   font-family: var(--font-roobert);
   font-weight: var(--font-weight-semibold);
-  font-size: 18px;
+  font-size: 19px;
   color: #ffffff;
   margin: 0;
 }
@@ -138,8 +157,8 @@
 .hobby-card-desc {
   font-family: var(--font-roobert);
   font-weight: var(--font-weight-light);
-  font-size: 11.5px;
-  line-height: 1.45;
+  font-size: 12px;
+  line-height: 1.5;
   color: #94a3b8;
   margin: 0;
 }
@@ -158,10 +177,10 @@
     position: relative;
     transform: none !important;
     opacity: 1 !important;
-    width: 240px;
-    height: 300px;
+    width: 250px;
+    height: 340px;
     margin: 0 auto;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
   }
 
   .hobbies-cards-stack:hover .hobby-stack-card {
