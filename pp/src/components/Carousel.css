@@ -1,0 +1,139 @@
+/* Carousel.css */
+
+.carousel-container {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--color-ash-mist);
+  border-radius: var(--radius-cards, 0px); /* Sharp Monopo Saigon corners */
+  padding: 16px;
+  background-color: var(--surface-card);
+  transition: border-color var(--duration-medium) var(--ease-patient),
+              background-color var(--duration-medium) var(--ease-patient);
+}
+
+.carousel-track {
+  display: flex;
+}
+
+.carousel-item {
+  position: relative;
+  display: flex;
+  flex-shrink: 0;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  border: 1px solid var(--color-ash-mist);
+  border-radius: var(--radius-cards, 0px);
+  background-color: var(--color-paper); /* Dark midnight or light paper */
+  overflow: hidden;
+  cursor: grab;
+  height: 220px; /* Structured height for card cards */
+  transition: border-color var(--duration-medium) var(--ease-patient),
+              background-color var(--duration-medium) var(--ease-patient);
+}
+
+.carousel-item:active {
+  cursor: grabbing;
+}
+
+.carousel-item:hover {
+  border-color: var(--color-accent-secondary);
+}
+
+.carousel-item-header {
+  margin-bottom: 12px;
+  padding: var(--spacing-20);
+  padding-top: var(--spacing-20);
+}
+
+.carousel-icon-container {
+  display: flex;
+  height: 36px;
+  width: 36px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: rgba(20, 184, 166, 0.12); /* Translucent Teal accent */
+}
+
+.carousel-icon {
+  height: 18px;
+  width: 18px;
+  color: var(--color-accent-secondary);
+}
+
+/* Alternate colors for variety */
+.carousel-item:nth-child(odd) .carousel-icon-container {
+  background-color: rgba(99, 102, 241, 0.12); /* Translucent Indigo accent */
+}
+
+.carousel-item:nth-child(odd) .carousel-icon {
+  color: var(--color-accent);
+}
+
+.carousel-item-content {
+  padding: var(--spacing-20);
+  padding-bottom: var(--spacing-20);
+}
+
+.carousel-item-title {
+  margin-bottom: var(--spacing-8);
+  font-family: var(--font-roobert);
+  font-weight: var(--font-weight-semibold);
+  font-size: 18px;
+  color: var(--color-obsidian);
+}
+
+.carousel-item-description {
+  font-family: var(--font-roobert);
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--color-inkstone);
+  font-weight: var(--font-weight-light);
+}
+
+/* Indicators navigation styling */
+.carousel-indicators-container {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  margin-top: 12px;
+}
+
+.carousel-indicators {
+  display: flex;
+  width: 120px;
+  justify-content: space-between;
+  padding: 0;
+}
+
+.carousel-indicator {
+  height: 6px;
+  width: 6px;
+  border: none;
+  padding: 0;
+  appearance: none;
+  border-radius: 50%;
+  cursor: pointer;
+  background-color: var(--color-ash-mist);
+  transition: background-color 150ms ease, transform 150ms ease;
+}
+
+.carousel-indicator:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.carousel-indicator.active {
+  background-color: var(--color-accent-secondary);
+  width: 12px; /* Active indicator capsule shape */
+  border-radius: 3px;
+}
+
+.carousel-indicator.inactive {
+  background-color: var(--color-ash-mist);
+}
+
+.carousel-indicator.inactive:hover {
+  background-color: var(--color-felt-gray);
+}

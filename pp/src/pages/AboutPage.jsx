@@ -3,6 +3,7 @@ import { GraduationCap, Award, Cpu, FileText, Code2, Sliders, Wrench } from 'luc
 import { achievements, education, skills } from '../data/portfolioData';
 import resumePdf from '../components/PavanKumarCSE.pdf';
 import GlowingShadow from '../components/GlowingShadow';
+import Carousel from '../components/Carousel';
 import './AboutPage.css';
 
 // Animation variants for section blocks
@@ -207,6 +208,36 @@ function AboutPage() {
               <p className="milestone-text">{achievement}</p>
             </motion.div>
           ))}
+        </div>
+      </motion.section>
+
+      {/* 5. Hobbies & Interests Section */}
+      <motion.section 
+        className="section-block"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        variants={sectionVariants}
+        style={{ marginBottom: 'var(--spacing-48)' }}
+      >
+        <div className="section-heading">
+          <span className="section-label">Interests</span>
+          <h2 className="heading-whisper">Offline activities</h2>
+        </div>
+
+        <p className="page-intro">
+          When I am not training neural networks or configuring database models, I enjoy competing in multiplayer arenas, exploring scenic heights, and playing team sports.
+        </p>
+
+        <div style={{ display: 'flex', justifyContent: 'center', marginTop: 'var(--spacing-24)' }}>
+          <Carousel
+            baseWidth={330}
+            autoplay={true}
+            autoplayDelay={3500}
+            pauseOnHover={true}
+            loop={true}
+            round={false}
+          />
         </div>
       </motion.section>
     </div>
