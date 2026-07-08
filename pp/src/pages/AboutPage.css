@@ -1,0 +1,206 @@
+.about-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-40);
+  margin-bottom: var(--spacing-68);
+}
+
+/* Hero Section */
+.about-hero {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 28px;
+  position: relative;
+  overflow: hidden;
+  padding: 40px 0;
+}
+
+.about-glow {
+  position: absolute;
+  top: -10%;
+  left: 20%;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.12) 0%, transparent 70%);
+  filter: blur(40px);
+  pointer-events: none;
+}
+
+.about-manifesto-text {
+  font-family: var(--font-roobert), sans-serif;
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--color-obsidian);
+  margin-bottom: 24px;
+}
+
+/* Timeline Layout */
+.timeline-container {
+  position: relative;
+  margin: 40px 0;
+  padding-left: 20px;
+  border-left: 1px solid var(--color-ash-mist);
+}
+
+.timeline-item {
+  position: relative;
+  padding-bottom: 40px;
+  padding-left: 30px;
+  transition: all 0.3s ease;
+}
+
+.timeline-item:last-child {
+  padding-bottom: 0;
+}
+
+.timeline-node {
+  position: absolute;
+  left: -26px;
+  top: 6px;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background-color: var(--color-pewter);
+  border: 3px solid var(--color-paper);
+  z-index: 10;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.timeline-item:hover .timeline-node {
+  background-color: var(--color-accent-secondary); /* Teal accent */
+  box-shadow: 0 0 10px var(--color-accent-secondary);
+  transform: scale(1.3);
+}
+
+.timeline-meta {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--color-felt-gray);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.timeline-title {
+  font-family: var(--font-roobert), sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--color-obsidian);
+  margin: 0 0 4px;
+}
+
+.timeline-sub {
+  font-size: 13px;
+  color: var(--color-felt-gray);
+  margin: 0 0 12px;
+}
+
+.timeline-desc {
+  font-size: 14.5px;
+  line-height: 1.5;
+  color: var(--color-inkstone);
+  margin: 0;
+}
+
+/* Skill Tags Grid */
+.skills-grid-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.skill-category-card {
+  background-color: var(--surface-card);
+  border: 1px solid var(--color-ash-mist);
+  border-radius: 16px;
+  padding: 24px;
+  transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.skill-category-card:hover {
+  border-color: var(--color-slate-pill);
+  transform: translateY(-2px);
+}
+
+.skill-category-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.skill-category-icon {
+  width: 18px;
+  height: 18px;
+  color: var(--color-felt-gray);
+}
+
+.skill-tags-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.skill-tag-pill {
+  font-size: 12px;
+  font-weight: 500;
+  padding: 6px 12px;
+  border-radius: 8px;
+  background-color: var(--color-paper);
+  border: 1px solid var(--color-ash-mist);
+  color: var(--color-inkstone);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.skill-tag-pill:hover {
+  color: #fff;
+  border-color: var(--color-accent-secondary);
+  transform: scale(1.06);
+  box-shadow: 0 0 12px rgba(20, 184, 166, 0.2);
+}
+
+/* Milestones Row */
+.milestones-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.milestone-item-row {
+  display: flex;
+  align-items: baseline;
+  gap: 24px;
+  padding: 24px;
+  border-radius: 12px;
+  background-color: var(--surface-card);
+  border: 1px solid var(--color-ash-mist);
+  transition: all 0.3s ease;
+}
+
+.milestone-item-row:hover {
+  border-color: var(--color-slate-pill);
+  transform: translateX(4px);
+  background-color: rgba(99, 102, 241, 0.02);
+}
+
+.milestone-num {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--color-felt-gray);
+}
+
+.milestone-text {
+  font-size: 15.5px;
+  line-height: 1.5;
+  color: var(--color-obsidian);
+  margin: 0;
+}
+
+/* Responsive Queries */
+@media (max-width: 768px) {
+  .skills-grid-container {
+    grid-template-columns: 1fr;
+  }
+}

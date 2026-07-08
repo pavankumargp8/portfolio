@@ -1,0 +1,131 @@
+.theme-toggle-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: rgba(15, 19, 28, 0.85); /* Dark surface card */
+  border: 1px solid var(--color-ash-mist);
+  color: var(--color-obsidian);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(12px);
+  padding: 0;
+  z-index: 9999;
+}
+
+.theme-toggle-btn:hover {
+  background-color: var(--color-accent);
+  color: #ffffff;
+  border-color: var(--color-accent);
+  transform: scale(1.08);
+}
+
+.theme-toggle-icon-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.theme-icon {
+  width: 20px;
+  height: 20px;
+  stroke-width: 2;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.theme-icon.sun {
+  animation: rotateSun 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.theme-icon.moon {
+  animation: scaleMoon 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes rotateSun {
+  from {
+    transform: rotate(-90deg) scale(0);
+  }
+  to {
+    transform: rotate(0deg) scale(1);
+  }
+}
+
+@keyframes scaleMoon {
+  from {
+    transform: scale(0) rotate(45deg);
+  }
+  to {
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+/* Light Theme Variables Overrides */
+.light {
+  --color-paper: #f8fafc; /* Soft white/light slate paper background */
+  --color-obsidian: #0f172a; /* Dark slate text for primary foreground */
+  --color-inkstone: #334155; /* Slate 700 for long body text */
+  --color-felt-gray: #64748b; /* Slate 500 for helper labels */
+  --color-ash-mist: #e2e8f0; /* Slate 200 for borders */
+  --surface-card: #ffffff; /* Clean white card surfaces */
+  --color-accent: #4f46e5; /* Indigo 600 accent */
+  --color-accent-secondary: #0d9488; /* Teal 600 accent */
+}
+
+/* Light Theme Component Overrides */
+.light .glass-dock {
+  background-color: rgba(255, 255, 255, 0.85) !important;
+  border: 1px solid rgba(226, 232, 240, 0.8) !important;
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.1);
+}
+
+.light .glass-dock-item.active .icon-wrapper {
+  color: var(--color-accent) !important;
+}
+
+.light .glass-dock-tooltip {
+  background-color: #0f172a;
+  color: #f8fafc;
+  border: 1px solid rgba(226, 232, 240, 0.1);
+}
+
+.light .chatbox-header {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+}
+
+.light .chatbox-header-text h4 {
+  color: var(--color-obsidian) !important;
+}
+
+.light .chatbox-status-dot {
+  border: 2px solid #ffffff;
+}
+
+/* View Transitions styling for circular reveal */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-old(root) {
+  z-index: 1;
+}
+
+::view-transition-new(root) {
+  z-index: 9999;
+  animation: circle-reveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes circle-reveal {
+  from {
+    clip-path: circle(0% at var(--click-x, 50vw) var(--click-y, 50vh));
+  }
+  to {
+    clip-path: circle(150% at var(--click-x, 50vw) var(--click-y, 50vh));
+  }
+}
