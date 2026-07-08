@@ -27,7 +27,7 @@
   background-color: var(--color-paper); /* Dark midnight or light paper */
   overflow: hidden;
   cursor: grab;
-  height: 220px; /* Structured height for card cards */
+  height: 280px; /* Structured height for card cards */
   transition: border-color var(--duration-medium) var(--ease-patient),
               background-color var(--duration-medium) var(--ease-patient);
 }

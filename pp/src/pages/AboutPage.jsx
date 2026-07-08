@@ -231,9 +231,9 @@ function AboutPage() {
 
         <div style={{ display: 'flex', justifyContent: 'center', marginTop: 'var(--spacing-24)' }}>
           <Carousel
-            baseWidth={330}
+            baseWidth={420}
             autoplay={true}
-            autoplayDelay={3500}
+            autoplayDelay={2000}
             pauseOnHover={true}
             loop={true}
             round={false}
