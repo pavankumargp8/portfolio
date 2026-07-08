@@ -1,0 +1,150 @@
+/* PixelCard.css */
+
+.pixel-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.pixel-card {
+  height: 320px;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--color-ash-mist);
+  border-radius: var(--radius-cards, 0px); /* Sharp Monopo Saigon corners */
+  background-color: var(--surface-card);
+  isolation: isolate;
+  transition: border-color var(--duration-medium) var(--ease-patient),
+              background-color var(--duration-medium) var(--ease-patient);
+  user-select: none;
+  box-sizing: border-box;
+}
+
+.pixel-card:hover {
+  border-color: var(--color-accent-secondary);
+}
+
+.pixel-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  background: radial-gradient(circle at center, rgba(8, 11, 17, 0.4), transparent 85%);
+  opacity: 0;
+  transition: opacity 800ms cubic-bezier(0.5, 1, 0.89, 1);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.light .pixel-card::before {
+  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.4), transparent 85%);
+}
+
+.pixel-card:hover::before,
+.pixel-card:focus-within::before {
+  opacity: 1;
+}
+
+/* Hobby content layout styles */
+.hobby-card-content {
+  z-index: 2;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: var(--spacing-28);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  box-sizing: border-box;
+  pointer-events: none; /* Let pointer pass to animate canvas underneath */
+}
+
+.hobby-icon-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: rgba(20, 184, 166, 0.12); /* Default Teal icon container background */
+  transition: background-color var(--duration-short) ease;
+}
+
+.hobby-icon {
+  width: 22px;
+  height: 22px;
+  color: var(--color-accent-secondary); /* Teal icon */
+  transition: color var(--duration-short) ease;
+}
+
+/* Alternate brand accents for dynamic grid card layouts */
+.pixel-card:nth-child(2) .hobby-icon-container {
+  background-color: rgba(99, 102, 241, 0.12); /* Indigo background */
+}
+
+.pixel-card:nth-child(2) .hobby-icon {
+  color: var(--color-accent); /* Indigo icon */
+}
+
+.pixel-card:nth-child(3) .hobby-icon-container {
+  background-color: rgba(168, 85, 247, 0.12); /* Purple background */
+}
+
+.pixel-card:nth-child(3) .hobby-icon {
+  color: #a855f7; /* Purple icon */
+}
+
+.hobby-info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-8);
+  width: 100%;
+}
+
+.hobby-title {
+  font-family: var(--font-roobert);
+  font-weight: var(--font-weight-semibold);
+  font-size: 20px;
+  color: var(--color-obsidian);
+  margin: 0;
+}
+
+.hobby-desc {
+  font-family: var(--font-roobert);
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--color-inkstone);
+  font-weight: var(--font-weight-light);
+  margin: 0;
+}
+
+/* 3-column responsive interests bento grid */
+.interests-pixel-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-28);
+  margin-top: var(--spacing-24);
+  width: 100%;
+}
+
+@media (max-width: 968px) {
+  .interests-pixel-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .interests-pixel-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-20);
+  }
+}

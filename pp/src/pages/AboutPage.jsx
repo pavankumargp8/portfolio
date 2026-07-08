@@ -1,9 +1,9 @@
 import { motion } from 'framer-motion';
-import { GraduationCap, Award, Cpu, FileText, Code2, Sliders, Wrench } from 'lucide-react';
+import { GraduationCap, Award, Cpu, FileText, Code2, Sliders, Wrench, Gamepad2, Compass, Trophy } from 'lucide-react';
 import { achievements, education, skills } from '../data/portfolioData';
 import resumePdf from '../components/PavanKumarCSE.pdf';
 import GlowingShadow from '../components/GlowingShadow';
-import Carousel from '../components/Carousel';
+import PixelCard from '../components/PixelCard';
 import './AboutPage.css';
 
 // Animation variants for section blocks
@@ -229,15 +229,51 @@ function AboutPage() {
           When I am not training neural networks or configuring database models, I enjoy competing in multiplayer arenas, exploring scenic heights, and playing team sports.
         </p>
 
-        <div style={{ display: 'flex', justifyContent: 'center', marginTop: 'var(--spacing-24)' }}>
-          <Carousel
-            baseWidth={420}
-            autoplay={true}
-            autoplayDelay={2000}
-            pauseOnHover={true}
-            loop={true}
-            round={false}
-          />
+        <div className="interests-pixel-grid">
+          {/* Card 1: Gaming */}
+          <motion.div variants={itemVariants}>
+            <PixelCard variant="blue" colors="#6366f1,#14b8a6,#3b82f6" speed={30}>
+              <div className="hobby-card-content">
+                <div className="hobby-icon-container">
+                  <Gamepad2 className="hobby-icon" />
+                </div>
+                <div className="hobby-info">
+                  <h3 className="hobby-title">Gaming</h3>
+                  <p className="hobby-desc">Competing in tactical FPS like Valorant and multiplayer battle royales like BGMI.</p>
+                </div>
+              </div>
+            </PixelCard>
+          </motion.div>
+
+          {/* Card 2: Trekking */}
+          <motion.div variants={itemVariants}>
+            <PixelCard variant="default" colors="#14b8a6,#10b981,#059669" speed={25}>
+              <div className="hobby-card-content">
+                <div className="hobby-icon-container">
+                  <Compass className="hobby-icon" />
+                </div>
+                <div className="hobby-info">
+                  <h3 className="hobby-title">Trekking</h3>
+                  <p className="hobby-desc">Exploring outdoor nature trails, climbing scenic heights, and seeking adventure.</p>
+                </div>
+              </div>
+            </PixelCard>
+          </motion.div>
+
+          {/* Card 3: Sports */}
+          <motion.div variants={itemVariants}>
+            <PixelCard variant="yellow" colors="#f59e0b,#d97706,#a855f7" speed={20}>
+              <div className="hobby-card-content">
+                <div className="hobby-icon-container">
+                  <Trophy className="hobby-icon" />
+                </div>
+                <div className="hobby-info">
+                  <h3 className="hobby-title">Sports</h3>
+                  <p className="hobby-desc">Playing as a dynamic all-rounder in cricket and orchestrating spikes as a setter in volleyball.</p>
+                </div>
+              </div>
+            </PixelCard>
+          </motion.div>
         </div>
       </motion.section>
     </div>
