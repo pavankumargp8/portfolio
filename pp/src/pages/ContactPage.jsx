@@ -72,7 +72,7 @@ function ContactPage() {
             <a
               href="https://github.com/pavankumargp8"
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               style={{ textDecoration: 'none', color: 'inherit', width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
             >
               GitHub Profile

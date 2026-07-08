@@ -120,7 +120,7 @@ export default function StaggeredGrid({
                       )}
                     </div>
 
-                    <a href={bentoItem.href} target="_blank" rel="noreferrer" className="bento-footer">
+                    <a href={bentoItem.href} target="_blank" rel="noopener noreferrer" className="bento-footer">
                       <div className="bento-footer-title">
                         <h3>{bentoItem.title}</h3>
                         <p>{bentoItem.subtitle}</p>

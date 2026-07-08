@@ -72,9 +72,9 @@ function SiteLayout() {
                 <p className="footer-copy">
                   <a href="mailto:pavankumargp88@gmail.com" className="footer-link">pavankumargp88@gmail.com</a>
                   <br />
-                  <a href="https://github.com/pavankumargp8" target="_blank" rel="noreferrer" className="footer-link">github.com/pavankumargp8</a>
+                  <a href="https://github.com/pavankumargp8" target="_blank" rel="noopener noreferrer" className="footer-link">github.com/pavankumargp8</a>
                   <br />
-                  <a href="https://linkedin.com/in/pavan-kumar" target="_blank" rel="noreferrer" className="footer-link">linkedin.com/in/pavan-kumar</a>
+                  <a href="https://linkedin.com/in/pavan-kumar" target="_blank" rel="noopener noreferrer" className="footer-link">linkedin.com/in/pavan-kumar</a>
                 </p>
               </div>
             </div>

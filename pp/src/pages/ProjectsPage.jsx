@@ -159,7 +159,7 @@ function ProjectsPage() {
                         <a 
                           href={project.githubLink}
                           target="_blank"
-                          rel="noreferrer"
+                          rel="noopener noreferrer"
                           style={{
                             textDecoration: 'none',
                             color: 'inherit',

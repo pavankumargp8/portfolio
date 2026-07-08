@@ -55,7 +55,7 @@ function AboutPage() {
               <a 
                 href={resumePdf} 
                 target="_blank" 
-                rel="noreferrer" 
+                rel="noopener noreferrer" 
                 style={{ 
                   textDecoration: 'none', 
                   color: 'inherit', 

@@ -125,7 +125,7 @@ export default function ProjectDrawer({ project, isOpen, onClose }) {
                     <a
                       href={project.githubLink}
                       target="_blank"
-                      rel="noreferrer"
+                      rel="noopener noreferrer"
                       className="drawer-github-link"
                     >
                       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ marginRight: '8px' }}>
