@@ -1,0 +1,262 @@
+/* ProjectDrawer.css */
+
+.drawer-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(4, 6, 10, 0.5);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  z-index: 99998;
+}
+
+.project-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: 560px;
+  max-width: 90vw;
+  background: rgba(15, 19, 28, 0.85); /* Frosty midnight */
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border-left: 1px solid var(--color-ash-mist);
+  z-index: 99999;
+  display: flex;
+  flex-direction: column;
+  box-shadow: -24px 0 70px rgba(0, 0, 0, 0.6);
+  color: var(--color-obsidian);
+  transition: background var(--duration-medium) var(--ease-patient),
+              border-color var(--duration-medium) var(--ease-patient),
+              box-shadow var(--duration-medium) var(--ease-patient);
+}
+
+/* Light mode overrides */
+.light .project-drawer {
+  background: rgba(253, 253, 253, 0.88); /* Frosty paper */
+  box-shadow: -24px 0 70px rgba(0, 0, 0, 0.08);
+}
+
+/* Drawer Header styling */
+.drawer-header {
+  height: 66px;
+  border-bottom: 1px solid var(--color-ash-mist);
+  display: flex;
+  align-items: center;
+  flex-direction: row-reverse; /* Put close on left/right and meta label on the other side */
+  justify-content: space-between;
+  padding: 0 var(--spacing-28);
+}
+
+.drawer-close-btn {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  color: var(--color-felt-gray);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color var(--duration-short) ease, transform var(--duration-short) ease;
+}
+
+.drawer-close-btn:hover {
+  color: var(--color-accent);
+  transform: rotate(90deg);
+}
+
+.drawer-meta-label {
+  font-family: var(--font-roobert);
+  font-size: var(--text-caption); /* 12px */
+  font-weight: var(--font-weight-regular);
+  color: var(--color-felt-gray);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+}
+
+/* Drawer Content Scrollable Area */
+.drawer-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--spacing-28);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-24);
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-ash-mist) transparent;
+}
+
+.drawer-content::-webkit-scrollbar {
+  width: 4px;
+}
+
+.drawer-content::-webkit-scrollbar-thumb {
+  background-color: var(--color-ash-mist);
+  border-radius: 2px;
+}
+
+/* Content Header */
+.drawer-content-header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--spacing-8);
+}
+
+.drawer-status-tag {
+  background: rgba(20, 184, 166, 0.1);
+  color: var(--color-accent-secondary);
+  border: 1px solid rgba(20, 184, 166, 0.2);
+  padding: 4px 10px;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.drawer-title {
+  font-family: var(--font-roobert);
+  font-size: 28px;
+  font-weight: var(--font-weight-regular);
+  line-height: 1.2;
+  margin: 4px 0 0;
+  color: var(--color-obsidian);
+  letter-spacing: -0.02em;
+}
+
+.drawer-tech-label {
+  font-family: var(--font-roobert);
+  font-size: var(--text-caption);
+  color: var(--color-felt-gray);
+  margin: 0;
+}
+
+.drawer-divider {
+  border: 0;
+  height: 1px;
+  background-color: var(--color-ash-mist);
+  margin: 0;
+  width: 100%;
+}
+
+/* Sections */
+.drawer-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-12);
+}
+
+.drawer-section-title {
+  font-family: var(--font-roobert);
+  font-size: var(--text-caption);
+  color: var(--color-felt-gray);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin: 0;
+}
+
+.drawer-text {
+  font-family: var(--font-roobert);
+  font-size: 14px;
+  font-weight: var(--font-weight-light);
+  line-height: 1.6;
+  color: var(--color-inkstone);
+  margin: 0;
+}
+
+/* Capabilities features list */
+.drawer-features-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-12);
+}
+
+.drawer-feature-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-12);
+}
+
+.drawer-feature-bullet {
+  color: var(--color-accent-secondary);
+  font-size: var(--text-caption);
+  margin-top: 2px;
+}
+
+/* Flowchart Diagram styling */
+.drawer-flow-diagram {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-8);
+  width: 100%;
+  margin-top: var(--spacing-8);
+}
+
+.drawer-flow-node {
+  width: 100%;
+  border: 1px solid var(--color-ash-mist);
+  background: rgba(8, 11, 17, 0.5);
+  padding: var(--spacing-12) var(--spacing-16);
+  border-radius: var(--radius-cards);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  transition: border-color var(--duration-short) ease, background var(--duration-short) ease;
+}
+
+.light .drawer-flow-node {
+  background: rgba(241, 245, 249, 0.7);
+}
+
+.drawer-flow-node:hover {
+  border-color: var(--color-accent);
+}
+
+.flow-node-text {
+  font-family: var(--font-roobert);
+  font-size: 13px;
+  color: var(--color-obsidian);
+  font-weight: var(--font-weight-regular);
+}
+
+.drawer-flow-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-accent-secondary);
+  opacity: 0.8;
+  height: 24px;
+}
+
+/* Footer & inspect button */
+.drawer-footer {
+  margin-top: var(--spacing-12);
+  width: 100%;
+}
+
+.drawer-github-link {
+  text-decoration: none;
+  color: #ffffff; /* Neon text inside shadow always matches high contrast */
+  width: 100%;
+  height: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-roobert);
+  font-size: var(--text-caption);
+  font-weight: var(--font-weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.light .drawer-github-link {
+  color: var(--color-obsidian); /* dark slate under light mode */
+}

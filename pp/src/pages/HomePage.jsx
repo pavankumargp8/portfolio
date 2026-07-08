@@ -141,12 +141,11 @@ function HomePage() {
         </div>
 
         <div className="section-grid">
-          <article className="section-card section-card-large">
+          <article className="section-card">
             <span className="section-label">Direction</span>
-            <h2>Where the work is heading</h2>
+            <h3>Where the work is heading</h3>
             <p>
-              I enjoy building systems that combine strong backend architectures with elegant, interactive human interfaces. 
-              My current focus is in medical image analysis (image segmentation), NLP-driven contract helpers, and low-latency database-backed systems.
+              I build systems that combine strong backend architectures with elegant, interactive interfaces in medical AI and database applications.
             </p>
           </article>
 

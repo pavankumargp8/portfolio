@@ -3,11 +3,15 @@ import { Send, User, Mail, MessageSquare, CheckCircle } from 'lucide-react';
 import GlowingShadow from './GlowingShadow';
 import './ChatBox.css';
 
+const FORMSPREE_FORM_ID = 'xvpnyrwo'; // REPLACE with your Formspree Form ID in future
+
 export default function ChatBox() {
   const [step, setStep] = useState(1); // 1: Message, 2: Name, 3: Email, 4: Done
   const [message, setMessage] = useState('');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
+  const [sendSuccess, setSendSuccess] = useState(false);
+  const [sendError, setSendError] = useState(false);
   const [chatLog, setChatLog] = useState([
     {
       sender: 'pavan',
@@ -28,11 +32,11 @@ export default function ChatBox() {
   };
 
   useEffect(() => {
-    if (step === 4) {
+    if (step === 4 && sendError) {
       triggerMailClient();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [step]);
+  }, [step, sendError]);
 
   const addChatBubble = (sender, text) => {
     setChatLog((prev) => [...prev, { sender, text }]);
@@ -77,11 +81,37 @@ export default function ChatBox() {
       pings.push({ name, email, message, timestamp: new Date().toISOString() });
       localStorage.setItem('pings', JSON.stringify(pings));
 
-      simulateResponse(
-        "Got it! Redirecting you to draft an email directly to my Gmail, so I can reply back to you easily. Click 'Send Mail' below if it does not pop up automatically!",
-        1200,
-        () => setStep(4)
-      );
+      setIsTyping(true);
+
+      // Post in the background to Formspree
+      fetch(`https://formspree.io/f/${FORMSPREE_FORM_ID}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          name: name,
+          email: email,
+          message: message
+        })
+      })
+      .then(response => {
+        setIsTyping(false);
+        if (response.ok) {
+          setSendSuccess(true);
+          addChatBubble('pavan', "Awesome! Your message has been sent directly to my inbox in the background. I'll get back to you shortly!");
+          setStep(4);
+        } else {
+          throw new Error('Formspree request failed');
+        }
+      })
+      .catch(() => {
+        setIsTyping(false);
+        setSendError(true);
+        addChatBubble('pavan', "I ran into a connection issue trying to send that in the background. No worries! You can click the 'Send Mail' button below to send it using your email app.");
+        setStep(4);
+      });
     }
   };
 
@@ -131,15 +161,22 @@ export default function ChatBox() {
       {/* Input Tray */}
       <div className="chatbox-footer">
         {step === 4 ? (
-          <div className="chatbox-success-tray" style={{ width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <CheckCircle className="chatbox-success-icon" />
-              <span>Mail draft prepared!</span>
+          sendSuccess ? (
+            <div className="chatbox-success-tray" style={{ width: '100%', display: 'flex', alignItems: 'center', gap: '8px', justifyContent: 'center' }}>
+              <CheckCircle className="chatbox-success-icon" style={{ color: 'var(--color-accent-secondary)' }} />
+              <span style={{ fontSize: '12px', fontWeight: 600, color: 'var(--color-accent-secondary)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Message Sent Successfully!</span>
             </div>
-            <GlowingShadow onClick={triggerMailClient} style={{ width: '130px', height: '36px' }}>
-              <span style={{ fontSize: '11px', fontWeight: 600 }}>Send Mail</span>
-            </GlowingShadow>
-          </div>
+          ) : (
+            <div className="chatbox-success-tray" style={{ width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <CheckCircle className="chatbox-success-icon" style={{ color: 'var(--color-accent)' }} />
+                <span style={{ fontSize: '11px', color: 'var(--color-accent)' }}>Local Draft Prepared:</span>
+              </div>
+              <GlowingShadow onClick={triggerMailClient} style={{ width: '120px', height: '36px' }}>
+                <span style={{ fontSize: '11px', fontWeight: 600 }}>Send Mail</span>
+              </GlowingShadow>
+            </div>
+          )
         ) : (
           <form onSubmit={handleSubmit} className="chatbox-input-form">
             <div className="chatbox-input-wrapper">

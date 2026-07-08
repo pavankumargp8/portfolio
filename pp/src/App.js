@@ -7,19 +7,23 @@ import HomePage from './pages/HomePage';
 import LandingPage from './pages/LandingPage';
 import ProjectsPage from './pages/ProjectsPage';
 import SiteLayout from './components/SiteLayout';
+import CustomCursor from './components/CustomCursor';
 
 function App() {
   return (
-    <Routes>
-      <Route element={<SiteLayout />}>
-        <Route index element={<LandingPage />} />
-        <Route path="home" element={<HomePage />} />
-        <Route path="projects" element={<ProjectsPage />} />
-        <Route path="about" element={<AboutPage />} />
-        <Route path="contact" element={<ContactPage />} />
-        <Route path="*" element={<Navigate to="/" replace />} />
-      </Route>
-    </Routes>
+    <>
+      <CustomCursor />
+      <Routes>
+        <Route element={<SiteLayout />}>
+          <Route index element={<LandingPage />} />
+          <Route path="home" element={<HomePage />} />
+          <Route path="projects" element={<ProjectsPage />} />
+          <Route path="about" element={<AboutPage />} />
+          <Route path="contact" element={<ContactPage />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Route>
+      </Routes>
+    </>
   );
 }
 
