@@ -16,7 +16,8 @@
   .milestone-row,
   .bento-card,
   .glass-dock-item,
-  .circular-gallery {
+  .circular-gallery,
+  .drawer-close-btn {
     cursor: none !important;
   }
 }
@@ -33,11 +34,43 @@
   overflow: hidden;
 }
 
-/* Sharp, individual pixel block style */
+/* Permanent visual lead pointer (never fades, ensures accuracy on small buttons like Close X) */
+.custom-cursor-lead {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 6px;
+  height: 6px;
+  margin-top: -3px;
+  margin-left: -3px;
+  background-color: var(--color-accent);
+  border-radius: 0px; /* Sharp retro look */
+  pointer-events: none;
+  z-index: 100000;
+  will-change: transform;
+  transition: width 0.2s ease, 
+              height 0.2s ease, 
+              margin-top 0.2s ease, 
+              margin-left 0.2s ease, 
+              background-color 0.2s ease,
+              box-shadow 0.2s ease;
+}
+
+/* Hovering interactive targets scales the lead pointer and changes its color and glow */
+.cursor-hovered .custom-cursor-lead {
+  width: 10px;
+  height: 10px;
+  margin-top: -5px;
+  margin-left: -5px;
+  background-color: var(--color-accent-secondary); /* Swaps to Teal */
+  box-shadow: 0 0 8px var(--color-accent-secondary);
+}
+
+/* Sharp, individual trail pixel block style */
 .custom-cursor-pixel {
   position: fixed;
   pointer-events: none;
-  border-radius: 1px; /* Very subtle rounding for modern pixel blocks */
+  border-radius: 1px;
   transform: translate3d(0, 0, 0);
   will-change: transform, width, height, opacity;
 }
