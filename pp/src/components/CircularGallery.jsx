@@ -228,7 +228,7 @@ class Media {
       depthTest: false,
       depthWrite: false,
       vertex: `
-        precision highp float;
+        precision mediump float;
         attribute vec3 position;
         attribute vec2 uv;
         uniform mat4 modelViewMatrix;
@@ -244,7 +244,7 @@ class Media {
         }
       `,
       fragment: `
-        precision highp float;
+        precision mediump float;
         uniform vec2 uImageSizes;
         uniform vec2 uPlaneSizes;
         uniform sampler2D tMap;
@@ -267,13 +267,14 @@ class Media {
           );
           vec4 color = texture2D(tMap, uv);
           
-          float d = roundedBoxSDF(vUv - 0.5, vec2(0.5 - uBorderRadius), uBorderRadius);
+          float alpha = 1.0;
+          if (uBorderRadius > 0.001) {
+            float d = roundedBoxSDF(vUv - 0.5, vec2(0.5 - uBorderRadius), uBorderRadius);
+            float edgeSmooth = 0.002;
+            alpha = 1.0 - smoothstep(-edgeSmooth, edgeSmooth, d);
+          }
           
-          // Smooth antialiasing for edges
-          float edgeSmooth = 0.002;
-          float alpha = 1.0 - smoothstep(-edgeSmooth, edgeSmooth, d);
-          
-          gl_FragColor = vec4(color.rgb, alpha);
+          gl_FragColor = vec4(color.rgb, alpha * color.a);
         }
       `,
       uniforms: {
@@ -419,9 +420,10 @@ class App {
     this.scene = new Transform();
   }
   createGeometry() {
+    const isMobile = window.matchMedia('(pointer: coarse)').matches;
     this.planeGeometry = new Plane(this.gl, {
-      heightSegments: 50,
-      widthSegments: 100
+      heightSegments: isMobile ? 8 : 20,
+      widthSegments: isMobile ? 16 : 40
     });
   }
   createMedias(items, bend = 1, textColor, borderRadius, font) {

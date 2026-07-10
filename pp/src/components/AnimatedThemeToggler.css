@@ -69,7 +69,7 @@
   --color-paper: #f8fafc; /* Soft white/light slate paper background */
   --color-obsidian: #0f172a; /* Dark slate text for primary foreground */
   --color-inkstone: #334155; /* Slate 700 for long body text */
-  --color-felt-gray: #64748b; /* Slate 500 for helper labels */
+  --color-felt-gray: #475569; /* Slate 600 for helper labels (AAA contrast) */
   --color-ash-mist: #e2e8f0; /* Slate 200 for borders */
   --surface-card: #ffffff; /* Clean white card surfaces */
   --color-accent: #4f46e5; /* Indigo 600 accent */
