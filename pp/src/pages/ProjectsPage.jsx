@@ -18,6 +18,19 @@ function ProjectsPage() {
   const [selectedProject, setSelectedProject] = useState(null);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [theme, setTheme] = useState(document.documentElement.classList.contains('light') ? 'light' : 'dark');
+  const [webglSupported, setWebglSupported] = useState(true);
+
+  useEffect(() => {
+    try {
+      const canvas = document.createElement('canvas');
+      const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+      if (!gl) {
+        setWebglSupported(false);
+      }
+    } catch (e) {
+      setWebglSupported(false);
+    }
+  }, []);
 
   useEffect(() => {
     const observer = new MutationObserver((mutations) => {
@@ -69,17 +82,58 @@ function ProjectsPage() {
       {/* 3D WebGL Circular Gallery Navigation */}
       <section className="section-block" style={{ marginTop: 'var(--spacing-12)' }}>
         <div style={{ height: '500px', position: 'relative', width: '100%', overflow: 'hidden', border: '1px solid var(--color-ash-mist)', backgroundColor: 'var(--surface-card)' }}>
-          <CircularGallery
-            items={galleryItems}
-            bend={1.2}
-            textColor={textColor}
-            borderRadius={0.0} // Sharp 0px corners to match Monopo Saigon
-            scrollEase={0.06}
-            fontUrl="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap"
-            font="bold 13px Orbitron"
-            scrollSpeed={1.8}
-            onItemClick={handleItemClick}
-          />
+          {webglSupported ? (
+            <CircularGallery
+              items={galleryItems}
+              bend={1.2}
+              textColor={textColor}
+              borderRadius={0.0} // Sharp 0px corners to match Monopo Saigon
+              scrollEase={0.06}
+              fontUrl="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap"
+              font="bold 13px Orbitron"
+              scrollSpeed={1.8}
+              onItemClick={handleItemClick}
+            />
+          ) : (
+            <div className="webgl-fallback-container" style={{ display: 'flex', gap: '24px', padding: '40px 24px', overflowX: 'auto', height: '100%', alignItems: 'center', boxSizing: 'border-box' }}>
+              {projects.map((project, index) => (
+                <div
+                  key={project.name}
+                  onClick={() => handleItemClick(index)}
+                  className="webgl-fallback-card"
+                  style={{
+                    flexShrink: 0,
+                    width: '260px',
+                    height: '380px',
+                    border: '1px solid var(--color-ash-mist)',
+                    backgroundColor: 'var(--color-paper)',
+                    cursor: 'pointer',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'space-between',
+                    padding: '24px',
+                    boxSizing: 'border-box',
+                    transition: 'border-color 0.2s ease, transform 0.2s ease'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.borderColor = 'var(--color-accent-secondary)';
+                    e.currentTarget.style.transform = 'translateY(-6px)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.borderColor = 'var(--color-ash-mist)';
+                    e.currentTarget.style.transform = 'translateY(0px)';
+                  }}
+                >
+                  <img src={projectImages[project.name]} alt={project.name} loading="lazy" style={{ width: '100%', height: '150px', objectFit: 'cover', border: '1px solid var(--color-ash-mist)' }} />
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginTop: '12px' }}>
+                    <h4 style={{ margin: 0, fontSize: '16px', fontWeight: 600, color: 'var(--color-obsidian)', fontFamily: 'var(--font-roobert)', lineHeight: '1.4' }}>{shortProjectNames[project.name] || project.name}</h4>
+                    <p style={{ margin: 0, fontSize: '11px', color: 'var(--color-felt-gray)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>{project.technologies}</p>
+                  </div>
+                  <p style={{ margin: 0, fontSize: '11px', color: 'var(--color-accent-secondary)', textTransform: 'uppercase', letterSpacing: '0.05em', fontWeight: 600 }}>Inspect Case Study</p>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
