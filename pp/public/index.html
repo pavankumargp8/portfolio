@@ -10,17 +10,53 @@
       content="Pavan Kumar — Portfolio. A monochrome editorial gallery presenting applied medical AI, database systems, and web projects."
     />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    
+    <!-- Open Graph / Facebook / LinkedIn -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://github.com/pavankumargp8/portfolio" />
+    <meta property="og:title" content="Pavan Kumar — Software Portfolio" />
+    <meta property="og:description" content="Personal developer portfolio displaying deep learning architectures, medical imaging systems, database projects, and clean web engineering." />
+    <meta property="og:image" content="%PUBLIC_URL%/profile_card.jpg" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:title" content="Pavan Kumar — Software Portfolio" />
+    <meta property="twitter:description" content="Personal developer portfolio displaying deep learning architectures, medical imaging systems, database projects, and clean web engineering." />
+    <meta property="twitter:image" content="%PUBLIC_URL%/profile_card.jpg" />
+
+    <!-- JSON-LD Structured Data Schema -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Pavan Kumar",
+        "url": "https://github.com/pavankumargp8/portfolio",
+        "image": "https://github.com/pavankumargp8/portfolio/raw/main/pp/public/profile_card.jpg",
+        "jobTitle": "Software Engineer & Deep Learning Developer",
+        "knowsAbout": ["Deep Learning", "Applied AI", "Medical Image Processing", "Database Design", "React", "C++", "Python"],
+        "sameAs": [
+          "https://github.com/pavankumargp8",
+          "https://linkedin.com/in/pavan-kumar"
+        ]
+      }
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Raleway:wght@400&display=swap" rel="stylesheet" />
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     <title>Pavan Kumar — Portfolio</title>
   </head>
   <body>
+    <!-- Theme Flash Guard (Applies light theme class before React render) -->
+    <script>
+      (function() {
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'light' || (!savedTheme && window.matchMedia('(prefers-color-scheme: light)').matches)) {
+          document.documentElement.classList.add('light');
+        }
+      })();
+    </script>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
     <!--

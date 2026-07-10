@@ -45,7 +45,7 @@ export default function HobbiesStack() {
               }}
             >
               <div className="hobby-card-top">
-                <img src={hobby.image} alt={hobby.title} className="hobby-card-image" />
+                <img src={hobby.image} alt={hobby.title} className="hobby-card-image" loading="lazy" />
               </div>
               <div className="hobby-card-bottom">
                 <h3 className="hobby-card-title">{hobby.title}</h3>

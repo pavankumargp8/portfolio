@@ -3,13 +3,25 @@ import { Sun, Moon } from 'lucide-react';
 import './AnimatedThemeToggler.css';
 
 export function AnimatedThemeToggler({ className = '', onThemeChange }) {
-  const [theme, setThemeState] = useState('dark');
+  const [theme, setThemeState] = useState(() => {
+    // Check local storage first
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+      return savedTheme;
+    }
+    // Fallback to system preference (OS color scheme)
+    const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+    return prefersLight ? 'light' : 'dark';
+  });
 
   useEffect(() => {
-    // Initialize theme state from document HTML tag class
-    const isLight = document.documentElement.classList.contains('light');
-    setThemeState(isLight ? 'light' : 'dark');
-  }, []);
+    // Sync the class on root HTML element
+    if (theme === 'light') {
+      document.documentElement.classList.add('light');
+    } else {
+      document.documentElement.classList.remove('light');
+    }
+  }, [theme]);
 
   const handleToggle = (e) => {
     const nextTheme = theme === 'dark' ? 'light' : 'dark';
@@ -27,6 +39,7 @@ export function AnimatedThemeToggler({ className = '', onThemeChange }) {
         document.documentElement.classList.remove('light');
       }
       setThemeState(nextTheme);
+      localStorage.setItem('theme', nextTheme); // Persist choice
       if (onThemeChange) {
         onThemeChange(nextTheme);
       }

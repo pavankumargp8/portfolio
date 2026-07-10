@@ -114,7 +114,7 @@ export default function StaggeredGrid({
                     <div className="bento-img-bg">
                       {bentoItem.image && (
                         <>
-                          <img src={bentoItem.image} alt={bentoItem.title} />
+                          <img src={bentoItem.image} alt={bentoItem.title} loading="lazy" />
                           <div className="bento-text-gradient" />
                         </>
                       )}

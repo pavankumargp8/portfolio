@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { Home, Briefcase, Code, User, Mail } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 import GlassDock from './GlassDock';
 
 function SiteLayout() {
@@ -47,7 +48,18 @@ function SiteLayout() {
         </header>
 
         <main className={isLandingPage ? 'landing-route-shell' : 'content-shell route-shell'}>
-          <Outlet />
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={location.pathname}
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -15 }}
+              transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+              style={{ width: '100%', minHeight: '100%' }}
+            >
+              <Outlet />
+            </motion.div>
+          </AnimatePresence>
         </main>
 
         {/* Floating Bottom-Right Navigation Dock */}
