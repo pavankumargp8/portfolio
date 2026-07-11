@@ -12,6 +12,13 @@ export class ErrorBoundary extends React.Component {
 
   componentDidCatch(error, errorInfo) {
     console.error("ErrorBoundary caught a rendering error:", error, errorInfo);
+    if (this.props.onError) {
+      try {
+        this.props.onError(error, errorInfo);
+      } catch (err) {
+        console.error("ErrorBoundary failed calling onError callback:", err);
+      }
+    }
   }
 
   render() {

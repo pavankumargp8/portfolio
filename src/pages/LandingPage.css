@@ -250,7 +250,7 @@ div.landing-tagline-block.element-visible {
   left: 50%;
   transform: translateX(-50%);
   z-index: 10;
-  color: var(--color-paper);
+  color: white;
   opacity: 0.6;
   transition: opacity var(--duration-short) ease, transform var(--duration-short) ease;
 }

@@ -92,7 +92,10 @@ function ProjectsPage() {
       <section className="section-block" style={{ marginTop: 'var(--spacing-12)' }}>
         <div style={{ height: '500px', position: 'relative', width: '100%', overflow: 'hidden', border: '1px solid var(--color-ash-mist)', backgroundColor: 'var(--surface-card)' }}>
           {webglSupported ? (
-            <ErrorBoundary fallback={<div className="canvas-error-fallback" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', color: 'var(--color-felt-gray)', fontSize: '13px' }}>WebGL context failed.</div>}>
+            <ErrorBoundary 
+              onError={() => setWebglSupported(false)}
+              fallback={<div className="canvas-error-fallback" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', color: 'var(--color-felt-gray)', fontSize: '13px' }}>WebGL context failed.</div>}
+            >
               <Suspense fallback={<div className="canvas-loading-fallback" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', color: 'var(--color-felt-gray)', fontSize: '13px' }}>Loading 3D Gallery...</div>}>
                 <CircularGallery
                   items={galleryItems}
