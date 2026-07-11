@@ -767,3 +767,16 @@
     transition-delay: 0s !important;
   }
 }
+
+/* Fallback container scrollbar style */
+.webgl-fallback-container {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-ash-mist) transparent;
+}
+.webgl-fallback-container::-webkit-scrollbar {
+  height: 6px;
+}
+.webgl-fallback-container::-webkit-scrollbar-thumb {
+  background-color: var(--color-ash-mist);
+  border-radius: 3px;
+}
