@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import StaggeredGrid from '../components/StaggeredGrid';
 import ChatBox from '../components/ChatBox';
 import GlowingShadow from '../components/GlowingShadow';
@@ -48,6 +49,14 @@ const bentoItems = [
 ];
 
 function ContactPage() {
+  useEffect(() => {
+    document.title = "Contact | Pavan Kumar";
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) {
+      metaDesc.setAttribute('content', "Get in touch with Pavan Kumar for collaboration opportunities in deep learning, database design, and software engineering.");
+    }
+  }, []);
+
   return (
     <section className="section-block" style={{ marginBottom: 'var(--spacing-68)' }}>
       {/* 1. Header Section */}

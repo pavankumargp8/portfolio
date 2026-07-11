@@ -1,9 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import GlowingShadow from './GlowingShadow';
 import './ProjectDrawer.css';
 
 export default function ProjectDrawer({ project, isOpen, onClose }) {
+  const drawerRef = useRef(null);
+
   // Prevent background scrolling when drawer is open
   useEffect(() => {
     if (isOpen) {
@@ -14,6 +16,65 @@ export default function ProjectDrawer({ project, isOpen, onClose }) {
     return () => {
       document.body.style.overflow = '';
     };
+  }, [isOpen]);
+
+  // Handle Escape key to close the drawer
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        onClose();
+      }
+    };
+
+    if (isOpen) {
+      window.addEventListener('keydown', handleKeyDown);
+    }
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isOpen, onClose]);
+
+  // Trap focus inside the drawer while it is open
+  useEffect(() => {
+    if (!isOpen) return;
+
+    // Timeout allows DOM content inside AnimatePresence to mount fully
+    const timer = setTimeout(() => {
+      const focusableElements = drawerRef.current?.querySelectorAll(
+        'a[href], button:not([disabled]), [tabindex="0"]'
+      );
+
+      if (focusableElements && focusableElements.length > 0) {
+        // Focus the first element (the close button) initially
+        focusableElements[0].focus();
+
+        const handleTab = (e) => {
+          if (e.key !== 'Tab') return;
+
+          const firstElement = focusableElements[0];
+          const lastElement = focusableElements[focusableElements.length - 1];
+
+          if (e.shiftKey) {
+            if (document.activeElement === firstElement) {
+              lastElement.focus();
+              e.preventDefault();
+            }
+          } else {
+            if (document.activeElement === lastElement) {
+              firstElement.focus();
+              e.preventDefault();
+            }
+          }
+        };
+
+        window.addEventListener('keydown', handleTab);
+        return () => {
+          window.removeEventListener('keydown', handleTab);
+        };
+      }
+    }, 50);
+
+    return () => clearTimeout(timer);
   }, [isOpen]);
 
   if (!project) return null;
@@ -40,6 +101,7 @@ export default function ProjectDrawer({ project, isOpen, onClose }) {
 
           {/* Sliding Drawer Container */}
           <motion.aside
+            ref={drawerRef}
             className="project-drawer"
             initial={{ x: '100%' }}
             animate={{ x: 0 }}

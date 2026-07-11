@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { GraduationCap, Award, Cpu, FileText, Code2, Sliders, Wrench } from 'lucide-react';
 import { achievements, education, skills } from '../data/portfolioData';
@@ -29,6 +30,14 @@ const itemVariants = {
 };
 
 function AboutPage() {
+  useEffect(() => {
+    document.title = "About | Pavan Kumar";
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) {
+      metaDesc.setAttribute('content', "Learn more about Pavan Kumar's academic history, coding journey, and outdoor hobbies.");
+    }
+  }, []);
+
   return (
     <div className="about-container">
       {/* 1. Manifesto / Introduction Section */}

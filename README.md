@@ -1,5 +1,7 @@
 # Pavan Kumar — Interactive Developer Portfolio
 
+[![Build & Lint CI](https://github.com/pavankumargp8/portfolio/actions/workflows/build-lint.yml/badge.svg)](https://github.com/pavankumargp8/portfolio/actions/workflows/build-lint.yml)
+
 A high-fidelity, editorial developer portfolio engineered in React. Designed with minimalist Monopo Saigon aesthetics, typography grids, dynamic 3D layouts, and strict accessibility hardening.
 
 👉 **Live Demo:** [https://github.com/pavankumargp8/portfolio](https://github.com/pavankumargp8/portfolio)

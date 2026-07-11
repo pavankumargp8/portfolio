@@ -1,9 +1,11 @@
-import { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, lazy, Suspense } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import FloatingLines from '../components/FloatingLines';
 import SplitText from '../components/SplitText';
 import AnimatedThemeToggler from '../components/AnimatedThemeToggler';
+import ErrorBoundary from '../components/ErrorBoundary';
 import './LandingPage.css';
+
+const FloatingLines = lazy(() => import('../components/FloatingLines'));
 
 const ChevronDownIcon = (props) => (
   <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" {...props}>
@@ -17,7 +19,13 @@ function LandingPage() {
   const hasNavigated = useRef(false);
 
   useEffect(() => {
-    // Set a tiny timeout to trigger the slide-up/fade-in transitions
+    // Dynamic SEO Title & Description
+    document.title = "Pavan Kumar — Portfolio";
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) {
+      metaDesc.setAttribute('content', 'Pavan Kumar — Portfolio. A monochrome editorial gallery presenting applied medical AI, database systems, and web projects.');
+    }
+
     const timer = setTimeout(() => setInView(true), 150);
     return () => clearTimeout(timer);
   }, []);
@@ -87,20 +95,24 @@ function LandingPage() {
 
       {/* 1. WebGL Floating Lines Backdrop (React Bits) */}
       <div className="iridescent-backdrop" style={{ zIndex: 1, pointerEvents: 'auto' }} aria-hidden="true">
-        <FloatingLines 
-          enabledWaves={['top', 'middle', 'bottom']}
-          lineCount={11}
-          lineDistance={[8, 6, 4]}
-          bendRadius={24.5}
-          bendStrength={-4}
-          interactive={true}
-          parallax={true}
-          animationSpeed={1.7}
-          linesGradient={['#520ad1', '#061cd4', '#14b8a6', '#ffffff']}
-          gradientStart="#520ad1"
-          gradientMid="#061cd4"
-          gradientEnd="#ffffff"
-        />
+        <ErrorBoundary fallback={<div className="canvas-error-fallback" style={{ width: '100%', height: '100%', backgroundColor: 'var(--color-paper)' }} />}>
+          <Suspense fallback={<div className="canvas-loading-fallback" style={{ width: '100%', height: '100%', backgroundColor: 'var(--color-paper)' }} />}>
+            <FloatingLines 
+              enabledWaves={['top', 'middle', 'bottom']}
+              lineCount={11}
+              lineDistance={[8, 6, 4]}
+              bendRadius={24.5}
+              bendStrength={-4}
+              interactive={true}
+              parallax={true}
+              animationSpeed={1.7}
+              linesGradient={['#520ad1', '#061cd4', '#14b8a6', '#ffffff']}
+              gradientStart="#520ad1"
+              gradientMid="#061cd4"
+              gradientEnd="#ffffff"
+            />
+          </Suspense>
+        </ErrorBoundary>
         <div className="dark-overlay" style={{ pointerEvents: 'none', zIndex: 2 }} />
       </div>
 

@@ -10,6 +10,14 @@ function HomePage() {
   const hasNavigated = useRef(false);
 
   useEffect(() => {
+    document.title = "Work | Pavan Kumar";
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) {
+      metaDesc.setAttribute('content', "View Pavan Kumar's professional history, skills list, and engineering roadmap.");
+    }
+  }, []);
+
+  useEffect(() => {
     const triggerNavigationBack = () => {
       if (hasNavigated.current) return;
       hasNavigated.current = true;

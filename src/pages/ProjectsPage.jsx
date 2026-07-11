@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, lazy, Suspense } from 'react';
 import { projects } from '../data/portfolioData';
 import { Github } from 'lucide-react';
 import GlowingShadow from '../components/GlowingShadow';
-import CircularGallery from '../components/CircularGallery';
 import ProjectDrawer from '../components/ProjectDrawer';
+import ErrorBoundary from '../components/ErrorBoundary';
+
+const CircularGallery = lazy(() => import('../components/CircularGallery'));
 
 // High-quality editorial visual maps matching each project type
 const projectImages = {
@@ -33,6 +35,13 @@ function ProjectsPage() {
   }, []);
 
   useEffect(() => {
+    // Dynamic SEO Title & Description
+    document.title = "Projects | Pavan Kumar";
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) {
+      metaDesc.setAttribute('content', 'Explore selected software development, medical image processing, and database engineering projects by Pavan Kumar.');
+    }
+
     const observer = new MutationObserver((mutations) => {
       mutations.forEach((mutation) => {
         if (mutation.attributeName === 'class') {
@@ -83,17 +92,21 @@ function ProjectsPage() {
       <section className="section-block" style={{ marginTop: 'var(--spacing-12)' }}>
         <div style={{ height: '500px', position: 'relative', width: '100%', overflow: 'hidden', border: '1px solid var(--color-ash-mist)', backgroundColor: 'var(--surface-card)' }}>
           {webglSupported ? (
-            <CircularGallery
-              items={galleryItems}
-              bend={1.2}
-              textColor={textColor}
-              borderRadius={0.0} // Sharp 0px corners to match Monopo Saigon
-              scrollEase={0.06}
-              fontUrl="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap"
-              font="bold 13px Orbitron"
-              scrollSpeed={1.8}
-              onItemClick={handleItemClick}
-            />
+            <ErrorBoundary fallback={<div className="canvas-error-fallback" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', color: 'var(--color-felt-gray)', fontSize: '13px' }}>WebGL context failed.</div>}>
+              <Suspense fallback={<div className="canvas-loading-fallback" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', color: 'var(--color-felt-gray)', fontSize: '13px' }}>Loading 3D Gallery...</div>}>
+                <CircularGallery
+                  items={galleryItems}
+                  bend={1.2}
+                  textColor={textColor}
+                  borderRadius={0.0} // Sharp 0px corners to match Monopo Saigon
+                  scrollEase={0.06}
+                  fontUrl="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap"
+                  font="bold 13px Orbitron"
+                  scrollSpeed={1.8}
+                  onItemClick={handleItemClick}
+                />
+              </Suspense>
+            </ErrorBoundary>
           ) : (
             <div className="webgl-fallback-container" style={{ display: 'flex', gap: '24px', padding: '40px 24px', overflowX: 'auto', height: '100%', alignItems: 'center', boxSizing: 'border-box' }}>
               {projects.map((project, index) => (
