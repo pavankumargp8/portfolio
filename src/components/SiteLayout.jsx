@@ -9,10 +9,50 @@ function SiteLayout() {
   const navigate = useNavigate();
   const isLandingPage = location.pathname === '/';
   const [showCookieBanner, setShowCookieBanner] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    
+    // Trigger route transition loading bar animation
+    setIsTransitioning(true);
+    setProgress(30);
+
+    const t1 = setTimeout(() => setProgress(70), 100);
+    const t2 = setTimeout(() => {
+      setProgress(100);
+      const t3 = setTimeout(() => {
+        setIsTransitioning(false);
+        setProgress(0);
+      }, 200);
+      return () => clearTimeout(t3);
+    }, 350);
+
+    return () => {
+      clearTimeout(t1);
+      clearTimeout(t2);
+    };
   }, [location.pathname]);
+
+  const [showScrollTop, setShowScrollTop] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 400) {
+        setShowScrollTop(true);
+      } else {
+        setShowScrollTop(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   useEffect(() => {
     const consent = localStorage.getItem('monopo-saigon-consent');
@@ -37,6 +77,22 @@ function SiteLayout() {
 
   return (
     <div className="app-shell">
+      {/* Route Change Progress Indicator */}
+      {isTransitioning && (
+        <div 
+          style={{ 
+            position: 'fixed', 
+            top: 0, 
+            left: 0, 
+            height: '3px', 
+            backgroundColor: 'var(--color-accent)', 
+            width: `${progress}%`, 
+            zIndex: 100000, 
+            transition: 'width 0.25s ease-out, opacity 0.2s ease-out',
+            opacity: progress === 100 ? 0 : 1
+          }} 
+        />
+      )}
       <div className="app-frame">
         {/* Navigation Bar - Brand Only */}
         <header className={`site-header ${isLandingPage ? 'landing-header-ref' : ''}`}>
@@ -114,6 +170,45 @@ function SiteLayout() {
           </div>
         )}
       </div>
+
+      {/* Floating Scroll-to-Top Button (balanced with GlassDock on right) */}
+      <AnimatePresence>
+        {showScrollTop && (
+          <motion.button
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 10 }}
+            onClick={scrollToTop}
+            className="scroll-to-top-btn"
+            aria-label="Scroll back to top of page"
+            style={{
+              position: 'fixed',
+              bottom: '32px',
+              left: '32px',
+              width: '44px',
+              height: '44px',
+              borderRadius: '50%',
+              backgroundColor: 'var(--surface-card)',
+              border: '1px solid var(--color-ash-mist)',
+              color: 'var(--color-obsidian)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              cursor: 'pointer',
+              zIndex: 9999,
+              boxShadow: '0 4px 20px rgba(0, 0, 0, 0.15)',
+              outline: 'none'
+            }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <line x1="12" y1="19" x2="12" y2="5" />
+              <polyline points="5 12 12 5 19 12" />
+            </svg>
+          </motion.button>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

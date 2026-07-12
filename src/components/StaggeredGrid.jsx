@@ -22,6 +22,25 @@ export default function StaggeredGrid({
   const textRef = useRef(null);
   const [activeBento, setActiveBento] = useState(0);
 
+  const handleMouseMove = (e) => {
+    const card = e.currentTarget;
+    const box = card.getBoundingClientRect();
+    const x = e.clientX - box.left;
+    const y = e.clientY - box.top;
+    
+    // Calculate rotation percentage (-10deg to 10deg)
+    const rotateY = ((x / box.width) - 0.5) * 10;
+    const rotateX = ((0.5 - (y / box.height))) * 10;
+    
+    card.style.setProperty('--rotate-x', `${rotateX}deg`);
+    card.style.setProperty('--rotate-y', `${rotateY}deg`);
+  };
+
+  const handleMouseLeave = (card) => {
+    card.style.setProperty('--rotate-x', '0deg');
+    card.style.setProperty('--rotate-y', '0deg');
+  };
+
   const splitText = (text) => {
     return text.split('').map((char, i) => (
       <span key={i} className="char inline-block" style={{ willChange: 'transform' }}>
@@ -97,6 +116,8 @@ export default function StaggeredGrid({
                 className={`bento-item ${isActive ? 'active' : ''}`}
                 style={{ width: isActive ? "60%" : "20%" }}
                 onMouseEnter={() => setActiveBento(index)}
+                onMouseMove={handleMouseMove}
+                onMouseLeave={(e) => handleMouseLeave(e.currentTarget)}
                 onClick={() => setActiveBento(index)}
               >
                 <div className="bento-item-border" />
