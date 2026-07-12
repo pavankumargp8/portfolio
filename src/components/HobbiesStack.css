@@ -187,3 +187,17 @@
     transform: none !important;
   }
 }
+
+/* Light mode overrides */
+.light .hobby-card-bottom {
+  background-color: #f8fafc;
+  border-top: 1px solid var(--color-ash-mist);
+}
+
+.light .hobby-card-title {
+  color: var(--color-obsidian);
+}
+
+.light .hobby-card-desc {
+  color: var(--color-felt-gray);
+}

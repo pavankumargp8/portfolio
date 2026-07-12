@@ -3,7 +3,7 @@ import { Send, User, Mail, MessageSquare, CheckCircle } from 'lucide-react';
 import GlowingShadow from './GlowingShadow';
 import './ChatBox.css';
 
-const FORMSPREE_FORM_ID = 'xvpnyrwo'; // REPLACE with your Formspree Form ID in future
+const FORMSPREE_FORM_ID = process.env.REACT_APP_FORMSPREE_ID || 'xvpnyrwo';
 
 export default function ChatBox() {
   const [step, setStep] = useState(1); // 1: Message, 2: Name, 3: Email, 4: Done

@@ -1,8 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './HobbiesStack.css';
 
 export default function HobbiesStack() {
   const [hoveredCard, setHoveredCard] = useState(null);
+  const [theme, setTheme] = useState('dark');
+
+  useEffect(() => {
+    const isLight = document.documentElement.classList.contains('light');
+    setTheme(isLight ? 'light' : 'dark');
+
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.attributeName === 'class') {
+          const isLight = document.documentElement.classList.contains('light');
+          setTheme(isLight ? 'light' : 'dark');
+        }
+      });
+    });
+
+    observer.observe(document.documentElement, { attributes: true });
+    return () => observer.disconnect();
+  }, []);
 
   const hobbies = [
     {
@@ -10,21 +28,21 @@ export default function HobbiesStack() {
       title: 'Sports',
       desc: 'Playing as an all-rounder in cricket and orchestrating plays as a setter in volleyball.',
       glow: '#a855f7',
-      image: '/hobbies_cricket.png'
+      image: theme === 'light' ? '/hobbies_cricket_light.png' : '/hobbies_cricket.png'
     },
     {
       id: 'gaming',
       title: 'Gaming',
       desc: 'Competing in tactical FPS like Valorant and multiplayer battle royales like BGMI.',
       glow: '#6366f1',
-      image: '/hobbies_gaming.jpg'
+      image: theme === 'light' ? '/hobbies_gaming_light.jpg' : '/hobbies_gaming.jpg'
     },
     {
       id: 'hiking',
       title: 'Hiking',
       desc: 'Exploring outdoor nature trails, climbing scenic heights, and seeking adventure.',
       glow: '#14b8a6',
-      image: '/hobbies_hiking.jpg'
+      image: theme === 'light' ? '/hobbies_hiking_light.jpg' : '/hobbies_hiking.jpg'
     }
   ];
 

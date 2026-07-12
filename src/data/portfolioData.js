@@ -55,6 +55,14 @@ export const projects = [
     caseStudy: {
       problem: 'Segmenting multi-modal 3D MRI scans and high-resolution retinal images accurately is critical for diagnostic aid, but manual annotation is slow and error-prone.',
       solution: 'Developed a deep learning pipeline using MONAI and PyTorch with 3D UNet and attention mechanisms, achieving a Dice Similarity Coefficient (DSC) of 0.89 on 3D brain tumors and 0.82 on 2D retinal vessels, outperforming traditional baselines by 12%.',
+      metric: {
+        type: 'double-bar',
+        label1: '3D Brain Tumor',
+        val1: 89,
+        label2: '2D Retinal Vessels',
+        val2: 82,
+        suffix: '%'
+      },
       features: [
         'Multi-modal MRI input (T1, T1c, T2, FLAIR) fusion.',
         'Attention-gated UNet block segmentation.',
@@ -79,6 +87,13 @@ export const projects = [
     caseStudy: {
       problem: 'Managing building entry/exit tracking manually leads to security loopholes, delays, and poor analytics on visitor distribution.',
       solution: 'Engineered a JDBC-based Java application integrated with a normalized MySQL database schema, reducing check-in latency under 45ms and handling over 5,000+ daily log transactions with zero packet collisions.',
+      metric: {
+        type: 'radial',
+        label: 'Latency Reduction',
+        val: 85,
+        suffix: '%',
+        description: 'Check-in response latency dropped from 300ms down to under 45ms.'
+      },
       features: [
         'Secure operator registration and authentication system.',
         'Real-time automated timestamp log creation upon scan.',
@@ -103,6 +118,15 @@ export const projects = [
     caseStudy: {
       problem: 'Reviewing long-form legal contracts manually is tedious and makes it easy to overlook critical liability clauses or unfavorable terms.',
       solution: 'Built a retrieval-augmented generation (RAG) assistant using quantized Mistral-7B and ChromaDB, reducing legal document review latency by 65% while maintaining a 94% accuracy score on clause extraction.',
+      metric: {
+        type: 'line',
+        label: 'Review Duration',
+        labelY: 'Minutes',
+        x1: 'Manual Review',
+        y1: 100,
+        x2: 'RAG AI Buddy',
+        y2: 35
+      },
       features: [
         'Semantic chunking of PDF and DOCX legal files.',
         'Offline LLM inference using quantized model weight files.',
@@ -127,6 +151,13 @@ export const projects = [
     caseStudy: {
       problem: 'Assigning seating plans for hundreds of university students across multiple branches manually leads to scheduling collisions and layout bias.',
       solution: 'Developed a constraint-matching seat allocation engine in React and Node.js, reducing scheduling conflicts to absolute 0% and saving 15+ hours of manual mapping work per exam cycle for over 1,200 candidates.',
+      metric: {
+        type: 'radial',
+        label: 'Hours Saved',
+        val: 92,
+        suffix: '%',
+        description: 'Saved 15+ hours of manual administrative mapping work per cycle.'
+      },
       features: [
         'Bulk CSV uploads for quick student and class roster imports.',
         'Collision-free branch shuffling seating distribution engine.',
@@ -151,6 +182,13 @@ export const projects = [
     caseStudy: {
       problem: 'Standard resumes and simple websites look flat and fail to showcase advanced engineering, aesthetic design, and interactive UX capabilities.',
       solution: 'Engineered a high-performance React SPA with lazy-loaded modules, optimized custom WebGL OGL renderers, and zero-flash theme persistence, achieving a 98% Lighthouse performance rating on mobile.',
+      metric: {
+        type: 'radial',
+        label: 'Lighthouse Rating',
+        val: 98,
+        suffix: '%',
+        description: 'Achieved a 98% Lighthouse performance score on low-end mobile devices.'
+      },
       features: [
         '3D WebGL wavy lines and project gallery carousels.',
         'Circular ripple page reveals on theme toggles.',

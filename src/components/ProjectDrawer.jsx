@@ -3,6 +3,115 @@ import { motion, AnimatePresence } from 'framer-motion';
 import GlowingShadow from './GlowingShadow';
 import './ProjectDrawer.css';
 
+const DoubleBarChart = ({ metric }) => (
+  <div className="metric-chart-container">
+    <div className="bar-chart-row" style={{ marginBottom: '16px' }}>
+      <div className="bar-chart-label" style={{ fontSize: '11px', color: 'var(--color-felt-gray)', marginBottom: '6px', textTransform: 'uppercase', letterSpacing: '0.05em' }}>{metric.label1}</div>
+      <div className="bar-chart-track" style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+        <div style={{ flex: 1, height: '8px', backgroundColor: 'var(--color-ash-mist)', borderRadius: '4px', overflow: 'hidden', position: 'relative' }}>
+          <motion.div 
+            initial={{ width: 0 }} 
+            animate={{ width: `${metric.val1}%` }} 
+            transition={{ duration: 1, ease: 'easeOut' }}
+            style={{ height: '100%', backgroundColor: 'var(--color-accent)', borderRadius: '4px' }}
+          />
+        </div>
+        <span style={{ fontSize: '13px', fontWeight: 600, color: 'var(--color-accent)', minWidth: '40px', textAlign: 'right' }}>{metric.val1}{metric.suffix}</span>
+      </div>
+    </div>
+    <div className="bar-chart-row">
+      <div className="bar-chart-label" style={{ fontSize: '11px', color: 'var(--color-felt-gray)', marginBottom: '6px', textTransform: 'uppercase', letterSpacing: '0.05em' }}>{metric.label2}</div>
+      <div className="bar-chart-track" style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+        <div style={{ flex: 1, height: '8px', backgroundColor: 'var(--color-ash-mist)', borderRadius: '4px', overflow: 'hidden', position: 'relative' }}>
+          <motion.div 
+            initial={{ width: 0 }} 
+            animate={{ width: `${metric.val2}%` }} 
+            transition={{ duration: 1, ease: 'easeOut', delay: 0.15 }}
+            style={{ height: '100%', backgroundColor: 'var(--color-accent-secondary)', borderRadius: '4px' }}
+          />
+        </div>
+        <span style={{ fontSize: '13px', fontWeight: 600, color: 'var(--color-accent-secondary)', minWidth: '40px', textAlign: 'right' }}>{metric.val2}{metric.suffix}</span>
+      </div>
+    </div>
+  </div>
+);
+
+const RadialChart = ({ metric }) => {
+  const radius = 45;
+  const circumference = 2 * Math.PI * radius;
+  const strokeDashoffset = circumference - (metric.val / 100) * circumference;
+
+  return (
+    <div className="metric-chart-container radial" style={{ display: 'flex', alignItems: 'center', gap: '24px', backgroundColor: 'rgba(30, 41, 59, 0.15)', padding: '20px', border: '1px solid var(--color-ash-mist)', borderRadius: '0px' }}>
+      <div className="radial-svg-wrap" style={{ position: 'relative', width: '100px', height: '100px', flexShrink: 0 }}>
+        <svg width="100" height="100" viewBox="0 0 100 100" style={{ transform: 'rotate(-90deg)', overflow: 'visible' }}>
+          <circle cx="50" cy="50" r={radius} stroke="var(--color-ash-mist)" strokeWidth="6" fill="transparent" />
+          <motion.circle 
+            cx="50" 
+            cy="50" 
+            r={radius} 
+            stroke="var(--color-accent-secondary)" 
+            strokeWidth="6" 
+            fill="transparent"
+            strokeDasharray={circumference}
+            initial={{ strokeDashoffset: circumference }}
+            animate={{ strokeDashoffset }}
+            transition={{ duration: 1.2, ease: 'easeInOut' }}
+            strokeLinecap="round"
+          />
+        </svg>
+        <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '16px', fontWeight: 700, color: 'var(--color-obsidian)', fontFamily: 'var(--font-roobert)' }}>
+          {metric.val}{metric.suffix}
+        </div>
+      </div>
+      <div className="radial-info">
+        <h5 style={{ margin: '0 0 6px', fontSize: '13px', textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--color-obsidian)', fontFamily: 'var(--font-roobert)' }}>{metric.label}</h5>
+        <p style={{ margin: 0, fontSize: '12px', color: 'var(--color-felt-gray)', lineHeight: '1.4' }}>{metric.description}</p>
+      </div>
+    </div>
+  );
+};
+
+const LineChart = ({ metric }) => (
+  <div className="metric-chart-container" style={{ paddingBottom: '10px' }}>
+    <div style={{ position: 'relative', height: '130px', marginTop: '8px', borderLeft: '1px solid var(--color-ash-mist)', borderBottom: '1px solid var(--color-ash-mist)', paddingLeft: '12px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+      {/* Grid lines */}
+      <div style={{ position: 'absolute', right: 0, left: '12px', borderTop: '1px dashed rgba(148, 163, 184, 0.15)', height: '0', top: '10%' }} />
+      <div style={{ position: 'absolute', right: 0, left: '12px', borderTop: '1px dashed rgba(148, 163, 184, 0.15)', height: '0', top: '50%' }} />
+      
+      {/* SVG Path */}
+      <svg width="100%" height="100%" viewBox="0 0 300 120" preserveAspectRatio="none" style={{ overflow: 'visible', position: 'absolute', top: 0, left: '12px', right: 0 }}>
+        {/* Animated Line */}
+        <motion.path
+          d={`M 10 ${120 - metric.y1 * 0.9} L 250 ${120 - metric.y2 * 0.9}`}
+          fill="none"
+          stroke="var(--color-accent)"
+          strokeWidth="3"
+          initial={{ pathLength: 0 }}
+          animate={{ pathLength: 1 }}
+          transition={{ duration: 1, ease: 'easeInOut' }}
+        />
+        {/* Points */}
+        <motion.circle cx="10" cy={120 - metric.y1 * 0.9} r="5" fill="var(--color-accent-secondary)" />
+        <motion.circle cx="250" cy={120 - metric.y2 * 0.9} r="5" fill="var(--color-accent-secondary)" />
+      </svg>
+    </div>
+
+    {/* X Labels */}
+    <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '12px', paddingLeft: '12px', fontSize: '11px', color: 'var(--color-felt-gray)', fontFamily: 'var(--font-roobert)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+      <span>{metric.x1}: <strong>{metric.y1} {metric.labelY}</strong></span>
+      <span>{metric.x2}: <strong>{metric.y2} {metric.labelY}</strong></span>
+    </div>
+  </div>
+);
+
+const CaseStudyMetric = ({ metric }) => {
+  if (metric.type === 'double-bar') return <DoubleBarChart metric={metric} />;
+  if (metric.type === 'radial') return <RadialChart metric={metric} />;
+  if (metric.type === 'line') return <LineChart metric={metric} />;
+  return null;
+};
+
 export default function ProjectDrawer({ project, isOpen, onClose }) {
   const drawerRef = useRef(null);
 
@@ -141,6 +250,14 @@ export default function ProjectDrawer({ project, isOpen, onClose }) {
                 <h4 className="drawer-section-title">The Solution</h4>
                 <p className="drawer-text">{caseStudy.solution}</p>
               </section>
+
+              {/* Quantified Outcome Visualization Chart */}
+              {caseStudy.metric && (
+                <section className="drawer-section">
+                  <h4 className="drawer-section-title">Quantified Impact</h4>
+                  <CaseStudyMetric metric={caseStudy.metric} />
+                </section>
+              )}
 
               {/* Features List */}
               {caseStudy.features && caseStudy.features.length > 0 && (
