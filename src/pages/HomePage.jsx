@@ -126,6 +126,20 @@ function HomePage() {
 
             {/* Tech Stack Horizontal Row */}
             <div className="tech-stack-row">
+              {/* Java */}
+              <div className="tech-icon-card" title="Java" style={{ '--glow-color': '#f89820' }}>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f89820" strokeWidth="2" strokeLinecap="round">
+                  <path d="M6 18c0 1.5 2 2.5 6 2.5s6-1 6-2.5M8 15.5c0 1 1.5 1.5 4 1.5s4-.5 4-1.5M10 13c0 .5 1 1 2 1s2-.5 2-1" />
+                  <path d="M12 11c-2-3 2-5 0-9M15 10c-1-2 1-4 0-7" />
+                </svg>
+              </div>
+              {/* C */}
+              <div className="tech-icon-card" title="C" style={{ '--glow-color': '#a8b9cc' }}>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <rect width="24" height="24" rx="4" fill="#a8b9cc" />
+                  <text x="7" y="17" fontFamily="sans-serif" fontWeight="bold" fontSize="13" fill="#fff">C</text>
+                </svg>
+              </div>
               {/* JS */}
               <div className="tech-icon-card" title="JavaScript" style={{ '--glow-color': '#f7df1e' }}>
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -149,30 +163,8 @@ function HomePage() {
                   <ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(150 12 12)" />
                 </svg>
               </div>
-              {/* PyTorch */}
-              <div className="tech-icon-card" title="PyTorch" style={{ '--glow-color': '#ee4c2c' }}>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                  <path d="M12 2C8 6 8 8 8 10c0 4.42 3.58 8 8 8s8-3.58 8-8c0-2 0-4-4-8z" fill="#ee4c2c" opacity="0.15" />
-                  <path d="M12 2L4 7v10l8 5 8-5V7l-8-5z" fill="#ee4c2c" />
-                  <path d="M12 2v20l8-5V7l-8-5z" fill="#f05b3f" />
-                </svg>
-              </div>
-              {/* Java */}
-              <div className="tech-icon-card" title="Java" style={{ '--glow-color': '#f89820' }}>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#007396" strokeWidth="2">
-                  <path d="M6 18c0 1.5 2 2.5 6 2.5s6-1 6-2.5M8 15.5c0 1 1.5 1.5 4 1.5s4-.5 4-1.5M10 13c0 .5 1 1 2 1s2-.5 2-1" />
-                  <path d="M12 11c-2-3 2-5 0-9M15 10c-1-2 1-4 0-7" stroke="#f89820" />
-                </svg>
-              </div>
-              {/* C++ */}
-              <div className="tech-icon-card" title="C++" style={{ '--glow-color': '#00599c' }}>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                  <rect width="24" height="24" rx="4" fill="#00599c" />
-                  <text x="3" y="16" fontFamily="sans-serif" fontWeight="bold" fontSize="10" fill="#fff">C++</text>
-                </svg>
-              </div>
-              {/* MySQL */}
-              <div className="tech-icon-card" title="MySQL" style={{ '--glow-color': '#00758f' }}>
+              {/* Database */}
+              <div className="tech-icon-card" title="Database" style={{ '--glow-color': '#00758f' }}>
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#00758f" strokeWidth="2" strokeLinecap="round">
                   <ellipse cx="12" cy="7" rx="7" ry="3" />
                   <path d="M5 7v5c0 1.66 3.13 3 7 3s7-1.34 7-3V7" />
