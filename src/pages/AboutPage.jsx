@@ -56,7 +56,7 @@ function AboutPage() {
         <motion.div className="about-hero" variants={itemVariants}>
           <div className="about-glow" />
           <p className="about-manifesto-text">
-            I enjoy building software that operates with absolute logic on the backend while feeling spacious, intuitive, and responsive on the front. My academic and personal roadmap focuses on solving medical imaging classification puzzles, designing secure DBMS models, and developing clean web platforms.
+            I write code to make complex systems behave predictably and look clean. Currently pursuing my B.E. in Computer Science & Engineering, my work centers on medical deep learning pipelines, normalized database systems, and robust web applications that solve real-world workflows without unnecessary noise.
           </p>
           <div>
             <GlowingShadow style={{ width: '280px' }}>

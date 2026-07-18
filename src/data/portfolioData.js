@@ -50,11 +50,11 @@ export const projects = [
     status: 'Completed',
     technologies: 'MONAI, PyTorch',
     description:
-      'Developed a model for the BraTS challenge on Kaggle, focused on multi-modal MRI analysis and tumor segmentation.',
+      'An automated medical image segmentation pipeline. Leverages deep learning to delineate complex brain tumors from multi-modal MRIs and trace delicate retinal vessel structures.',
     githubLink: 'https://github.com/pavankumargp8/Medical-Image-Segmentation',
     caseStudy: {
-      problem: 'Segmenting multi-modal 3D MRI scans and high-resolution retinal images accurately is critical for diagnostic aid, but manual annotation is slow and error-prone.',
-      solution: 'Developed a deep learning pipeline using MONAI and PyTorch with 3D UNet and attention mechanisms, achieving a Dice Similarity Coefficient (DSC) of 0.89 on 3D brain tumors and 0.82 on 2D retinal vessels, outperforming traditional baselines by 12%.',
+      problem: 'Manual segmentation of 3D brain scans and high-resolution retinal images is slow, highly subjective, and prone to clinical fatigue, delaying critical diagnostic timelines.',
+      solution: 'Engineered an attention-gated 3D UNet pipeline using MONAI. Trained on multi-modal MRIs (T1, T2, FLAIR), it automatically produces high-fidelity masks of tumor boundaries, reducing analysis overhead from hours to seconds.',
       metric: {
         type: 'double-bar',
         label1: '3D Brain Tumor',
@@ -82,11 +82,11 @@ export const projects = [
     status: 'Completed',
     technologies: 'MySQL, Java',
     description:
-      'Built a dynamic entry and exit logging system with user registration, dashboards, and full database-backed tracking.',
+      'A high-throughput log management system. Replaces paper logs with structured relational tables to track and analyze daily check-in activity.',
     githubLink: 'https://github.com/pavankumargp8/DBMS-CheckIn-CheckOut',
     caseStudy: {
-      problem: 'Managing building entry/exit tracking manually leads to security loopholes, delays, and poor analytics on visitor distribution.',
-      solution: 'Engineered a JDBC-based Java application integrated with a normalized MySQL database schema, reducing check-in latency under 45ms and handling over 5,000+ daily log transactions with zero packet collisions.',
+      problem: 'Analog logbooks create security vulnerabilities, cause entrance bottlenecks, and make it impossible to audit facility usage or trace occupancy history in real-time.',
+      solution: 'Designed a highly normalized MySQL database schema wrapped in a lightweight Java interface. Optimized query indexes to handle 5,000+ daily visitor transactions with check-in confirmation times under 45ms.',
       metric: {
         type: 'radial',
         label: 'Latency Reduction',
@@ -113,11 +113,11 @@ export const projects = [
     status: 'Completed',
     technologies: 'Python, FastAPI, Mistral/Gemma',
     description:
-      'LLM-powered legal assistant for clause extraction, contract analysis, and offline document review workflows.',
+      'A local retrieval-augmented generation (RAG) assistant. Automates the extraction of key clauses and liability indicators from dense legal contracts without external cloud dependencies.',
     githubLink: 'https://github.com/pavankumargp8/AI-Legal-Buddy',
     caseStudy: {
-      problem: 'Reviewing long-form legal contracts manually is tedious and makes it easy to overlook critical liability clauses or unfavorable terms.',
-      solution: 'Built a retrieval-augmented generation (RAG) assistant using quantized Mistral-7B and ChromaDB, reducing legal document review latency by 65% while maintaining a 94% accuracy score on clause extraction.',
+      problem: 'Manual contract analysis is time-intensive and risks overlooking critical liability loops, while online translation or parsing tools leak sensitive document data.',
+      solution: 'Configured an offline RAG engine using ChromaDB and a quantized Mistral-7B model. Users upload documents locally to identify unfavorable clauses and ask legal queries in a secure, sandboxed interface.',
       metric: {
         type: 'line',
         label: 'Review Duration',
@@ -146,11 +146,11 @@ export const projects = [
     status: 'Mini Project',
     technologies: 'React, Node.js, PostgreSQL',
     description:
-      'Web system for automated seat allocation with bulk CSV uploads, seating patterns, and downloadable reports.',
+      'An algorithmic seat planning utility. Automates student examination placement, enforces custom spacing rules, and outputs optimized seating charts.',
     githubLink: 'https://github.com/pavankumargp8/Exam-Seat-Allotment',
     caseStudy: {
-      problem: 'Assigning seating plans for hundreds of university students across multiple branches manually leads to scheduling collisions and layout bias.',
-      solution: 'Developed a constraint-matching seat allocation engine in React and Node.js, reducing scheduling conflicts to absolute 0% and saving 15+ hours of manual mapping work per exam cycle for over 1,200 candidates.',
+      problem: 'Manually assigning hundreds of students to exam halls while respecting structural constraints (like alternating subjects to prevent cheating) is an error-prone logistics puzzle.',
+      solution: 'Built a constraint-satisfaction scheduling engine in React and Node.js. It distributes candidates across available halls, prevents scheduling clashes, and generates printable layout maps instantly.',
       metric: {
         type: 'radial',
         label: 'Hours Saved',
@@ -177,11 +177,11 @@ export const projects = [
     status: 'Completed',
     technologies: 'React, Framer Motion, WebGL, GSAP',
     description:
-      'A high-fidelity developer portfolio styled with Monopo Saigon aesthetics, dark/light themes, circular transition reveals, WebGL line backdrops, and custom spring animations.',
+      'A clean, editorial-style personal web gallery showcasing interactive engineering projects, featuring circular screen transitions, WebGL line backdrops, and spring animations.',
     githubLink: 'https://github.com/pavankumargp8/portfolio',
     caseStudy: {
-      problem: 'Standard resumes and simple websites look flat and fail to showcase advanced engineering, aesthetic design, and interactive UX capabilities.',
-      solution: 'Engineered a high-performance React SPA with lazy-loaded modules, optimized custom WebGL OGL renderers, and zero-flash theme persistence, achieving a 98% Lighthouse performance rating on mobile.',
+      problem: 'Standard resumes and simple websites look flat and fail to showcase advanced front-end engineering, aesthetic design, and interactive UX capabilities.',
+      solution: 'Engineered a responsive React SPA featuring custom OGL WebGL components, fluid layout transitions, and persistent theme controls, focused on speed and high visual fidelity.',
       metric: {
         type: 'radial',
         label: 'Lighthouse Rating',
@@ -206,7 +206,7 @@ export const projects = [
 ];
 
 export const achievements = [
-  'Participated in the MONAITHON Hackathon (Medical AI).',
-  'Developed the Examination Seat Allotment System as a mini-project under the VTU curriculum.',
-  'Created AI Legal Buddy using NLP and LLM models.',
+  'Developed and deployed university curriculum mini-projects with strict focus on database integrity.',
+  'Designed offline retrieval-augmented generation (RAG) pipelines for contract analysis.',
+  'Competed in medical AI hackathons, building semantic segmentation models for 3D MRI scans.'
 ];
