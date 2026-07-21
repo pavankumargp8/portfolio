@@ -4,6 +4,7 @@ import { GraduationCap, Award, Cpu, FileText, Code2, Sliders, Wrench } from 'luc
 import { achievements, education, skills } from '../data/portfolioData';
 import GlowingShadow from '../components/GlowingShadow';
 import HobbiesStack from '../components/HobbiesStack';
+import TiltedCard from '../components/TiltedCard';
 import './AboutPage.css';
 
 // Animation variants for section blocks
@@ -130,17 +131,33 @@ function AboutPage() {
         </div>
 
         <div className="about-bio-right">
-          <div className="about-image-overlap-wrap">
-            <div className="about-image-bg-card" />
-            <div className="about-image-fg-card">
-              <img 
-                src="/profile_card.jpg" 
-                alt="Pavan Kumar Portrait" 
-                className="about-portrait-img"
-                draggable="false"
-              />
-            </div>
-          </div>
+          <TiltedCard
+            imageSrc="/profile_card.jpg"
+            altText="Pavan Kumar Portrait"
+            captionText="Pavan Kumar"
+            containerHeight="380px"
+            containerWidth="290px"
+            imageHeight="380px"
+            imageWidth="290px"
+            rotateAmplitude={12}
+            scaleOnHover={1.05}
+            showMobileWarning={false}
+            showTooltip
+            displayOverlayContent
+            overlayContent={
+              <p className="tilted-card-demo-text" style={{ 
+                fontFamily: 'var(--font-roobert)', 
+                fontSize: '13px', 
+                fontWeight: 600, 
+                color: 'white', 
+                textTransform: 'uppercase', 
+                letterSpacing: '0.08em', 
+                textShadow: '0 2px 4px rgba(0,0,0,0.5)'
+              }}>
+                Pavan Kumar
+              </p>
+            }
+          />
         </div>
       </motion.section>
 
