@@ -40,26 +40,68 @@ function AboutPage() {
 
   return (
     <div className="about-container">
-      {/* 1. Manifesto / Introduction Section */}
+      {/* 1. Monumental Centered Hero */}
       <motion.section 
-        className="section-block"
+        className="about-hero-header"
+        initial="hidden"
+        animate="visible"
+        variants={sectionVariants}
+      >
+        <h1 className="about-hero-title">ABOUT ME</h1>
+        <div className="about-hero-sub">
+          <span className="section-label">GET TO KNOW MORE ABOUT</span>
+          <h3 className="about-hero-italic">who i am.</h3>
+        </div>
+      </motion.section>
+
+      {/* 2. Two-Column Biography Grid */}
+      <motion.section 
+        className="about-bio-grid"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-100px" }}
         variants={sectionVariants}
       >
-        <div className="section-heading">
-          <span className="section-label">Manifesto</span>
-          <h2 className="heading-whisper">Where the work is heading</h2>
-        </div>
-
-        <motion.div className="about-hero" variants={itemVariants}>
-          <div className="about-glow" />
-          <p className="about-manifesto-text">
-            I write code to make complex systems behave predictably and look clean. Currently pursuing my B.E. in Computer Science & Engineering, my work centers on medical deep learning pipelines, normalized database systems, and robust web applications that solve real-world workflows without unnecessary noise.
+        <div className="about-bio-left">
+          <span className="section-label">A LITTLE ABOUT ME</span>
+          <h2 className="about-bio-greeting">
+            Nice to meet you.<br />
+            I'm <span className="about-accent-name">Pavan</span>
+          </h2>
+          <p className="about-bio-desc">
+            I transform complex ideas into high-speed, scalable web products. As an engineering driver developer, I focus on the entire stack—prioritizing clean architecture, seamless performance, and modern solutions that drive real value.
           </p>
-          <div>
-            <GlowingShadow style={{ width: '280px' }}>
+          <p className="about-bio-desc">
+            Beyond writing code, I understand the product lifecycle—how to build, ship, and scale meaningful products in a fast-paced environment.
+          </p>
+          <p className="about-bio-desc">
+            My philosophy is simple: build things that last. I help startups and businesses bridge the gap between concept and reality with code that performs.
+          </p>
+          
+          {/* Social Links Row */}
+          <div className="about-bio-socials">
+            <a href="https://linkedin.com/in/pavan-kumar" target="_blank" rel="noopener noreferrer" className="about-social-link" title="LinkedIn">
+              <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                <rect x="2" y="9" width="4" height="12"></rect>
+                <circle cx="4" cy="4" r="2"></circle>
+              </svg>
+            </a>
+            <a href="https://github.com/pavankumargp8" target="_blank" rel="noopener noreferrer" className="about-social-link" title="GitHub">
+              <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+              </svg>
+            </a>
+            <a href="mailto:pavankumargp88@gmail.com" className="about-social-link" title="Email">
+              <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
+              </svg>
+            </a>
+          </div>
+
+          <div style={{ marginTop: '24px' }}>
+            <GlowingShadow style={{ width: '220px' }}>
               <a 
                 href="/PavanKumarCSE.pdf" 
                 download="PavanKumarCSE.pdf"
@@ -73,7 +115,11 @@ function AboutPage() {
                   display: 'inline-flex', 
                   alignItems: 'center', 
                   justifyContent: 'center', 
-                  gap: '8px' 
+                  gap: '8px',
+                  fontSize: '11px',
+                  fontWeight: 600,
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.08em'
                 }}
               >
                 <FileText className="w-4 h-4" />
@@ -81,7 +127,21 @@ function AboutPage() {
               </a>
             </GlowingShadow>
           </div>
-        </motion.div>
+        </div>
+
+        <div className="about-bio-right">
+          <div className="about-image-overlap-wrap">
+            <div className="about-image-bg-card" />
+            <div className="about-image-fg-card">
+              <img 
+                src="/profile_card.jpg" 
+                alt="Pavan Kumar Portrait" 
+                className="about-portrait-img"
+                draggable="false"
+              />
+            </div>
+          </div>
+        </div>
       </motion.section>
 
       {/* 2. Timeline / Education Section */}

@@ -5,34 +5,158 @@
   margin-bottom: var(--spacing-68);
 }
 
-/* Hero Section */
-.about-hero {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 28px;
+/* Hero Header section */
+.about-hero-header {
+  text-align: center;
+  padding: 80px 0 50px;
   position: relative;
-  overflow: hidden;
-  padding: 40px 0;
 }
 
-.about-glow {
-  position: absolute;
-  top: -10%;
-  left: 20%;
-  width: 300px;
-  height: 300px;
-  background: radial-gradient(circle, rgba(99, 102, 241, 0.12) 0%, transparent 70%);
-  filter: blur(40px);
-  pointer-events: none;
-}
-
-.about-manifesto-text {
+.about-hero-title {
   font-family: var(--font-roobert), sans-serif;
-  font-size: clamp(1.8rem, 4vw, 2.6rem);
-  font-weight: 700;
-  line-height: 1.3;
+  font-size: clamp(3.5rem, 12vw, 9.5rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.05em;
+  margin: 0;
+  text-transform: uppercase;
   color: var(--color-obsidian);
-  margin-bottom: 24px;
+}
+
+.about-hero-sub {
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.about-hero-italic {
+  font-family: 'Playfair Display', Georgia, Cambria, "Times New Roman", Times, serif;
+  font-style: italic;
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  font-weight: 400;
+  margin: 0;
+  color: var(--color-obsidian);
+  text-transform: lowercase;
+}
+
+/* Two-column bio grid */
+.about-bio-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 60px;
+  align-items: center;
+  padding: 60px 0;
+  border-top: 1px solid var(--color-ash-mist);
+}
+
+.about-bio-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.about-bio-greeting {
+  font-family: var(--font-roobert), sans-serif;
+  font-size: clamp(2.4rem, 5vw, 4.4rem);
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--color-obsidian);
+  margin: 0 0 10px;
+}
+
+.about-accent-name {
+  font-style: italic;
+  font-family: 'Playfair Display', Georgia, serif;
+  color: var(--color-accent);
+}
+
+.about-bio-desc {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--color-inkstone);
+  margin: 0;
+  max-width: 580px;
+}
+
+.about-bio-socials {
+  display: flex;
+  gap: 16px;
+  margin-top: 12px;
+}
+
+.about-social-link {
+  color: var(--color-felt-gray);
+  transition: color 0.2s ease, transform 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.about-social-link:hover {
+  color: var(--color-accent);
+  transform: translateY(-2px);
+}
+
+.about-bio-right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.about-image-overlap-wrap {
+  position: relative;
+  width: 290px;
+  height: 380px;
+}
+
+.about-image-bg-card {
+  position: absolute;
+  top: 20px;
+  left: -20px;
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.45) 0%, rgba(20, 184, 166, 0.2) 100%);
+  z-index: 1;
+  filter: blur(1px);
+}
+
+.about-image-fg-card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  overflow: hidden;
+  z-index: 2;
+  border: 1px solid var(--color-ash-mist);
+  background-color: var(--surface-card);
+}
+
+.about-portrait-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+  .about-bio-grid {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+  .about-bio-right {
+    order: -1;
+  }
+  .about-image-overlap-wrap {
+    width: 260px;
+    height: 340px;
+  }
 }
 
 /* Timeline Layout */
