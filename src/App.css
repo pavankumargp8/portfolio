@@ -632,10 +632,8 @@
    10. Home Page Side-by-Side Hero (TiltedCard)
 ---------------------------------------------------- */
 .home-hero-container {
-  display: grid;
-  grid-template-columns: minmax(0, 1.4fr) minmax(300px, 0.8fr);
-  gap: var(--spacing-48);
-  align-items: center;
+  display: flex;
+  flex-direction: column;
   margin-bottom: var(--spacing-28);
 }
 

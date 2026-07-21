@@ -1,6 +1,5 @@
 import { useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import TiltedCard from '../components/TiltedCard';
 import FlipFadeText from '../components/FlipFadeText';
 import { skills } from '../data/portfolioData';
 import { motion } from 'motion/react';
@@ -182,28 +181,6 @@ function HomePage() {
                 </svg>
               </div>
             </div>
-          </div>
-          
-          <div className="home-hero-right">
-            <TiltedCard
-              imageSrc="/profile_card.jpg"
-              altText="Pavan Kumar - Profile"
-              captionText="Pavan Kumar"
-              containerHeight="300px"
-              containerWidth="300px"
-              imageHeight="300px"
-              imageWidth="300px"
-              rotateAmplitude={12}
-              scaleOnHover={1.05}
-              showMobileWarning={false}
-              showTooltip
-              displayOverlayContent
-              overlayContent={
-                <p className="tilted-card-demo-text">
-                  Pavan Kumar
-                </p>
-              }
-            />
           </div>
         </div>
 
