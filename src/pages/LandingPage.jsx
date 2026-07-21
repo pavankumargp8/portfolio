@@ -1,8 +1,9 @@
-import React, { useEffect, useState, useRef, lazy, Suspense } from 'react';
+import React, { useEffect, useState, useRef, useCallback, lazy, Suspense } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import SplitText from '../components/SplitText';
 import AnimatedThemeToggler from '../components/AnimatedThemeToggler';
 import ErrorBoundary from '../components/ErrorBoundary';
+import UiverseLoader from '../components/Cube';
 import './LandingPage.css';
 
 const FloatingLines = lazy(() => import('../components/FloatingLines'));
@@ -30,13 +31,13 @@ function LandingPage() {
     return () => clearTimeout(timer);
   }, []);
 
-  useEffect(() => {
-    const triggerNavigation = () => {
-      if (hasNavigated.current) return;
-      hasNavigated.current = true;
-      navigate('/home');
-    };
+  const triggerNavigation = useCallback(() => {
+    if (hasNavigated.current) return;
+    hasNavigated.current = true;
+    navigate('/home');
+  }, [navigate]);
 
+  useEffect(() => {
     // 1. Mouse wheel scroll down check
     const handleWheel = (e) => {
       if (e.deltaY > 0) {
@@ -84,7 +85,7 @@ function LandingPage() {
       window.removeEventListener('touchstart', handleTouchStart);
       window.removeEventListener('touchmove', handleTouchMove);
     };
-  }, [navigate]);
+  }, [triggerNavigation]);
 
   return (
     <div className="landing-page">
@@ -154,21 +155,9 @@ function LandingPage() {
           </p>
         </div>
 
-        {/* 4. Rotating Scroll Indicator (Typographic ornament, bottom-left) */}
-        <div className="rotating-scroll-badge" aria-hidden="true">
-          <svg className="scroll-svg" viewBox="0 0 100 100" width="90" height="90">
-            <path
-              id="textPath"
-              d="M 50, 50 m -36, 0 a 36,36 0 1,1 72,0 a 36,36 0 1,1 -72,0"
-              fill="none"
-              stroke="none"
-            />
-            <text fill="#ffffff" fontSize="9.2" fontWeight="400" letterSpacing="1.2">
-              <textPath href="#textPath" startOffset="0%">
-                SCROLL DOWN · SCROLL DOWN · SCROLL DOWN ·
-              </textPath>
-            </text>
-          </svg>
+        {/* 4. Interactive 3D Gateway Cube (Bottom-left) */}
+        <div className="landing-cube-wrapper">
+          <UiverseLoader onClick={triggerNavigation} />
         </div>
 
         {/* 5. Scroll link to Home (Bottom-center) */}

@@ -211,34 +211,21 @@ div.landing-tagline-block.element-visible {
 }
 
 /* ----------------------------------------------------
-   5. Rotating Circular Scroll Badge (Bottom-Left)
+   5. Interactive 3D Gateway Cube (Bottom-Left)
 ---------------------------------------------------- */
-.rotating-scroll-badge {
+.landing-cube-wrapper {
   position: absolute;
-  bottom: 40px;
-  left: 40px;
+  bottom: 60px;
+  left: 60px;
   z-index: 10;
-  pointer-events: none;
-  opacity: 0.64;
-  transition: opacity var(--duration-short) ease;
+  pointer-events: auto;
+  opacity: 0.82;
+  transition: opacity var(--duration-short) ease, transform 0.3s ease;
 }
 
-.rotating-scroll-badge:hover {
+.landing-cube-wrapper:hover {
   opacity: 1;
-}
-
-.scroll-svg {
-  animation: circularSpin 20s linear infinite;
-  display: block;
-}
-
-@keyframes circularSpin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  transform: scale(1.05);
 }
 
 /* ----------------------------------------------------
@@ -288,7 +275,7 @@ div.landing-tagline-block.element-visible {
     padding: 0 var(--spacing-28);
   }
   
-  .rotating-scroll-badge {
+  .landing-cube-wrapper {
     display: none; /* Hide on mobile devices to save viewport space */
   }
 }
