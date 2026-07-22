@@ -6,7 +6,7 @@ import ErrorBoundary from '../components/ErrorBoundary';
 import UiverseLoader from '../components/Cube';
 import './LandingPage.css';
 
-const FloatingLines = lazy(() => import('../components/FloatingLines'));
+const SideRays = lazy(() => import('../components/SideRays'));
 
 const ChevronDownIcon = (props) => (
   <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" {...props}>
@@ -94,24 +94,25 @@ function LandingPage() {
         <AnimatedThemeToggler />
       </div>
 
-      {/* 1. WebGL Floating Lines Backdrop (React Bits) */}
+      {/* 1. WebGL SideRays Backdrop */}
       <div className="iridescent-backdrop" style={{ zIndex: 1, pointerEvents: 'auto' }} aria-hidden="true">
         <ErrorBoundary fallback={<div className="canvas-error-fallback" style={{ width: '100%', height: '100%', backgroundColor: 'var(--color-paper)' }} />}>
           <Suspense fallback={<div className="canvas-loading-fallback" style={{ width: '100%', height: '100%', backgroundColor: 'var(--color-paper)' }} />}>
-            <FloatingLines 
-              enabledWaves={['top', 'middle', 'bottom']}
-              lineCount={11}
-              lineDistance={[8, 6, 4]}
-              bendRadius={24.5}
-              bendStrength={-4}
-              interactive={true}
-              parallax={true}
-              animationSpeed={1.7}
-              linesGradient={['#520ad1', '#061cd4', '#14b8a6', '#ffffff']}
-              gradientStart="#520ad1"
-              gradientMid="#061cd4"
-              gradientEnd="#ffffff"
-            />
+            <div style={{ width: '100%', height: '100%', position: 'relative' }}>
+              <SideRays
+                speed={2.5}
+                rayColor1="#EAB308"
+                rayColor2="#96c8ff"
+                intensity={2}
+                spread={2}
+                origin="top-right"
+                tilt={0}
+                saturation={1.5}
+                blend={0.75}
+                falloff={1.6}
+                opacity={1}
+              />
+            </div>
           </Suspense>
         </ErrorBoundary>
         <div className="dark-overlay" style={{ pointerEvents: 'none', zIndex: 2 }} />
