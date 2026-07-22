@@ -1,7 +1,7 @@
 import React, { useState, useEffect, lazy, Suspense } from 'react';
 import { projects } from '../data/portfolioData';
 import { Github } from 'lucide-react';
-import GlowingShadow from '../components/GlowingShadow';
+import SpecularButton from '../components/SpecularButton';
 import ProjectDrawer from '../components/ProjectDrawer';
 import ErrorBoundary from '../components/ErrorBoundary';
 
@@ -226,30 +226,17 @@ function ProjectsPage() {
 
                     {/* View on GitHub Button */}
                     {project.githubLink && (
-                      <GlowingShadow style={{ width: '180px', height: '38px' }}>
-                        <a 
-                          href={project.githubLink}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          style={{
-                            textDecoration: 'none',
-                            color: 'inherit',
-                            width: '100%',
-                            height: '100%',
-                            display: 'inline-flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            gap: '8px',
-                            fontSize: '11px',
-                            fontWeight: 600,
-                            textTransform: 'uppercase',
-                            letterSpacing: '0.05em'
-                          }}
-                        >
-                          <Github className="w-4 h-4" />
-                          View on GitHub
-                        </a>
-                      </GlowingShadow>
+                      <SpecularButton
+                        href={project.githubLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        size="sm"
+                        radius={10}
+                        style={{ width: '180px', height: '38px' }}
+                      >
+                        <Github className="w-4 h-4" />
+                        View on GitHub
+                      </SpecularButton>
                     )}
                   </div>
                 </div>

@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import StaggeredGrid from '../components/StaggeredGrid';
 import ChatBox from '../components/ChatBox';
-import GlowingShadow from '../components/GlowingShadow';
+import SpecularButton from '../components/SpecularButton';
 
 const GithubIcon = (props) => (
   <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" {...props}>
@@ -72,21 +72,24 @@ function ContactPage() {
         </p>
 
         <div style={{ display: 'flex', gap: 'var(--spacing-12)', flexWrap: 'wrap' }}>
-          <GlowingShadow style={{ width: '160px' }}>
-            <a href="mailto:pavankumargp88@gmail.com" style={{ textDecoration: 'none', color: 'inherit', width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              Email Pavan
-            </a>
-          </GlowingShadow>
-          <GlowingShadow style={{ width: '180px' }}>
-            <a
-              href="https://github.com/pavankumargp8"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ textDecoration: 'none', color: 'inherit', width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-            >
-              GitHub Profile
-            </a>
-          </GlowingShadow>
+          <SpecularButton
+            href="mailto:pavankumargp88@gmail.com"
+            size="md"
+            radius={12}
+            style={{ width: '160px' }}
+          >
+            Email Pavan
+          </SpecularButton>
+          <SpecularButton
+            href="https://github.com/pavankumargp8"
+            target="_blank"
+            rel="noopener noreferrer"
+            size="md"
+            radius={12}
+            style={{ width: '180px' }}
+          >
+            GitHub Profile
+          </SpecularButton>
         </div>
       </div>
 

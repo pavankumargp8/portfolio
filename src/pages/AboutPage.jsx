@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { GraduationCap, Award, Cpu, FileText, Code2, Sliders, Wrench } from 'lucide-react';
 import { achievements, education, skills } from '../data/portfolioData';
-import GlowingShadow from '../components/GlowingShadow';
+import SpecularButton from '../components/SpecularButton';
 import HobbiesStack from '../components/HobbiesStack';
 import TiltedCard from '../components/TiltedCard';
 import './AboutPage.css';
@@ -102,31 +102,18 @@ function AboutPage() {
           </div>
 
           <div style={{ marginTop: '24px' }}>
-            <GlowingShadow style={{ width: '220px' }}>
-              <a 
-                href="/PavanKumarCSE.pdf" 
-                download="PavanKumarCSE.pdf"
-                target="_blank" 
-                rel="noopener noreferrer" 
-                style={{ 
-                  textDecoration: 'none', 
-                  color: 'inherit', 
-                  width: '100%', 
-                  height: '100%', 
-                  display: 'inline-flex', 
-                  alignItems: 'center', 
-                  justifyContent: 'center', 
-                  gap: '8px',
-                  fontSize: '11px',
-                  fontWeight: 600,
-                  textTransform: 'uppercase',
-                  letterSpacing: '0.08em'
-                }}
-              >
-                <FileText className="w-4 h-4" />
-                Download CV (PDF)
-              </a>
-            </GlowingShadow>
+            <SpecularButton
+              href="/PavanKumarCSE.pdf"
+              download="PavanKumarCSE.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              size="md"
+              radius={12}
+              style={{ width: '220px' }}
+            >
+              <FileText className="w-4 h-4" />
+              Download CV (PDF)
+            </SpecularButton>
           </div>
         </div>
 

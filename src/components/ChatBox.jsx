@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { Send, User, Mail, MessageSquare, CheckCircle } from 'lucide-react';
-import GlowingShadow from './GlowingShadow';
+import SpecularButton from './SpecularButton';
 import './ChatBox.css';
 
 const FORMSPREE_FORM_ID = process.env.REACT_APP_FORMSPREE_ID || 'xvpnyrwo';
@@ -172,9 +172,14 @@ export default function ChatBox() {
                 <CheckCircle className="chatbox-success-icon" style={{ color: 'var(--color-accent)' }} />
                 <span style={{ fontSize: '11px', color: 'var(--color-accent)' }}>Local Draft Prepared:</span>
               </div>
-              <GlowingShadow onClick={triggerMailClient} style={{ width: '120px', height: '36px' }}>
-                <span style={{ fontSize: '11px', fontWeight: 600 }}>Send Mail</span>
-              </GlowingShadow>
+              <SpecularButton
+                onClick={triggerMailClient}
+                size="sm"
+                radius={10}
+                style={{ width: '120px', height: '36px' }}
+              >
+                Send Mail
+              </SpecularButton>
             </div>
           )
         ) : (
