@@ -632,9 +632,11 @@
    10. Home Page Side-by-Side Hero (TiltedCard)
 ---------------------------------------------------- */
 .home-hero-container {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: var(--spacing-28);
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: var(--spacing-48);
+  margin-bottom: var(--spacing-48);
+  align-items: center;
 }
 
 .home-hero-left {
@@ -777,4 +779,105 @@
 .webgl-fallback-container::-webkit-scrollbar-thumb {
   background-color: var(--color-ash-mist);
   border-radius: 3px;
+}
+
+/* ----------------------------------------------------
+   14. Infinite Vertical Scrolling Tech Logo Marquee
+---------------------------------------------------- */
+.vertical-marquee-container {
+  width: 100%;
+  max-width: 320px;
+  height: 340px;
+  overflow: hidden;
+  position: relative;
+  margin: 0 auto;
+  mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
+}
+
+.vertical-marquee-track {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  animation: scroll-vertical 16s linear infinite;
+}
+
+.vertical-marquee-container:hover .vertical-marquee-track {
+  animation-play-state: paused;
+}
+
+.marquee-badge-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 18px;
+  border-radius: 14px;
+  background-color: var(--surface-card);
+  border: 1px solid var(--color-ash-mist);
+  transition: transform var(--duration-short) ease,
+              border-color var(--duration-short) ease,
+              box-shadow var(--duration-short) ease,
+              background-color var(--duration-short) ease;
+  cursor: pointer;
+  user-select: none;
+}
+
+.marquee-badge-card:hover {
+  transform: translateY(-2px) scale(1.02);
+  border-color: var(--glow-color, var(--color-accent)) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4),
+              0 0 16px var(--glow-color, var(--color-accent));
+  background-color: rgba(30, 41, 59, 0.2);
+}
+
+.light .marquee-badge-card:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06),
+              0 0 16px var(--glow-color, var(--color-accent));
+  background-color: rgba(255, 255, 255, 0.85);
+}
+
+.marquee-badge-icon-wrap {
+  width: 42px;
+  height: 42px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform var(--duration-short) ease;
+}
+
+.marquee-badge-card:hover .marquee-badge-icon-wrap {
+  transform: scale(1.08);
+}
+
+.marquee-badge-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.marquee-badge-title {
+  font-family: var(--font-roobert);
+  font-size: 14px;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-obsidian);
+  margin: 0;
+}
+
+.marquee-badge-subtitle {
+  font-family: var(--font-roobert);
+  font-size: 11px;
+  color: var(--color-felt-gray);
+  margin: 0;
+}
+
+@keyframes scroll-vertical {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-50%);
+  }
 }

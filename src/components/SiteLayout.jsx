@@ -98,7 +98,7 @@ function SiteLayout() {
         <header className={`site-header ${isLandingPage ? 'landing-header-ref' : ''}`}>
           <div className="header-container">
             <Link className="site-brand" to="/">
-              pavan kumar
+              P.K.
             </Link>
           </div>
         </header>

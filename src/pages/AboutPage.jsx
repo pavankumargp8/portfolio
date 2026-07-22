@@ -1,10 +1,11 @@
 import { useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { GraduationCap, Award, Cpu, FileText, Code2, Sliders, Wrench } from 'lucide-react';
-import { achievements, education, skills } from '../data/portfolioData';
+import { GraduationCap, Award, FileText } from 'lucide-react';
+import { achievements, education } from '../data/portfolioData';
 import SpecularButton from '../components/SpecularButton';
 import HobbiesStack from '../components/HobbiesStack';
 import TiltedCard from '../components/TiltedCard';
+import SkillsSection from '../components/SkillsSection';
 import './AboutPage.css';
 
 // Animation variants for section blocks
@@ -184,72 +185,7 @@ function AboutPage() {
       </motion.section>
 
       {/* 3. Interactive Technical Capability Grid */}
-      <motion.section 
-        className="section-block"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-100px" }}
-        variants={sectionVariants}
-      >
-        <div className="section-heading">
-          <span className="section-label">Skills</span>
-          <h2 className="heading-whisper">Technical capability</h2>
-        </div>
-
-        <div className="skills-grid-container">
-          {/* Languages Card */}
-          <motion.div className="skill-category-card" variants={itemVariants}>
-            <div className="skill-category-title">
-              <Code2 className="skill-category-icon" />
-              <span className="section-label" style={{ margin: 0 }}>Languages</span>
-            </div>
-            <div className="skill-tags-list">
-              {skills.languages.map(lang => (
-                <span key={lang} className="skill-tag-pill">{lang}</span>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* Frameworks Card */}
-          <motion.div className="skill-category-card" variants={itemVariants}>
-            <div className="skill-category-title">
-              <Cpu className="skill-category-icon" />
-              <span className="section-label" style={{ margin: 0 }}>Frameworks</span>
-            </div>
-            <div className="skill-tags-list">
-              {skills.frameworks.map(fw => (
-                <span key={fw} className="skill-tag-pill">{fw}</span>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* Tools Card */}
-          <motion.div className="skill-category-card" variants={itemVariants}>
-            <div className="skill-category-title">
-              <Wrench className="skill-category-icon" />
-              <span className="section-label" style={{ margin: 0 }}>Tools & IDEs</span>
-            </div>
-            <div className="skill-tags-list">
-              {skills.tools.map(tool => (
-                <span key={tool} className="skill-tag-pill">{tool}</span>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* Strengths Card */}
-          <motion.div className="skill-category-card" variants={itemVariants}>
-            <div className="skill-category-title">
-              <Sliders className="skill-category-icon" />
-              <span className="section-label" style={{ margin: 0 }}>Core Strengths</span>
-            </div>
-            <div className="skill-tags-list">
-              {skills.strengths.map(strength => (
-                <span key={strength} className="skill-tag-pill">{strength}</span>
-              ))}
-            </div>
-          </motion.div>
-        </div>
-      </motion.section>
+      <SkillsSection />
 
       {/* 4. Awards / Achievements Section */}
       <motion.section 
